@@ -10,22 +10,25 @@ Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 La
 3) OpenCV, PyYAML, tensorboardX, tqdm
 4) Java SDK 1.8.0 (to run COCO-Eval-Cap metric computations)
 
-### Initial Performance Metrics
+### Performance Metrics
 The evaluation metrics are as follows:
 
 #### 1) ResNet50-LSTM
+This model encodes the image into a 512-dim vector using a Resnet50 model and uses that as\
+the hidden state for generating the first output token. The first input token is `</START>`.
+
 This is an initial implementation with the following hyperparameters:\
 300-dim embeddings (from-scratch), 512-dim LSTM layer, token-count cutoff of 10, 16 batch-size.\
 Trained for 25 epochs (19 epochs: Encoder frozen, 6 epochs: End-to-end Training)\
 Cross-Entropy Loss, Adam Optimizer, No gradient clipping\
-Greedy evaluation (sample the most probable token at every time-step)
+Greedy evaluation (sampling the most probable token at every time-step)
 
 | Metric        | Value  |
 | ------------- |:------:|
 | Bleu_4        | 0.2523 |
 | METEOR        | 0.2278 |
 | ROUGE_L       | 0.5008 |
-| CIDEr         | 0.78055|
+| CIDEr         | 0.7806|
 
 [Captioning results](checkpoints/c1_r50_lstm/caption_result): 
 
