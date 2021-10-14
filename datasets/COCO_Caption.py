@@ -20,7 +20,7 @@ import pickle
 from collections import OrderedDict
 
 
-DATASET_ROOT = 'C:\\Users\\megaa\\Python Projects\\Datasets\\MSCOCO_2014'
+DATASET_ROOT = <Path to MSCOCO dataset>
 
 
 def collate_fn(batch, padding_value=0):
