@@ -11,10 +11,9 @@ Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 La
 4) Java SDK 1.8.0 (to run COCO-Eval-Cap metric computations)
 
 ### Initial Performance Metrics
-The evaluation metrics are as follows: 
+The evaluation metrics are as follows:
 
-
-####1) ResNet50-LSTM
+#### 1) ResNet50-LSTM
 This is an initial implementation with the following hyperparameters:\
 300-dim embeddings (from-scratch), 512-dim LSTM layer, token-count cutoff of 10, 16 batch-size.\
 Trained for 25 epochs (19 epochs: Encoder frozen, 6 epochs: End-to-end Training)\
