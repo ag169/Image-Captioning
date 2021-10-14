@@ -22,6 +22,8 @@ Trained for 25 epochs (19 epochs: Encoder frozen, 6 epochs: End-to-end Training)
 Cross-Entropy Loss, Adam Optimizer, No gradient clipping\
 Greedy evaluation (sampling the most probable token at every time-step)
 
+Performance metrics on MSCOCO val2014 captions set:
+
 | Metric        | Value  |
 | ------------- |:------:|
 | Bleu_4        | 0.2523 |
