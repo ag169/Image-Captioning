@@ -1,0 +1,60 @@
+['</START>', 'a', 'large', 'building', 'with', 'a', 'clock', 'tower', 'in', 'the', 'middle', 'of', 'it', '.', '</END>']
+['</START>', 'a', 'brick', 'bridge', 'over', 'a', 'busy', 'city', 'streets', '.', '</END>']
+
+['</START>', 'a', 'little', 'girl', 'in', 'a', 'field', 'with', 'a', 'kite', '</END>']
+['</START>', 'a', 'little', 'girl', 'is', 'running', 'with', 'her', 'kite', 'in', 'a', 'open', 'field', '</END>']
+
+['</START>', 'a', 'woman', 'is', 'holding', 'a', 'wii', 'remote', 'in', 'her', 'hand', '.', '</END>']
+['</START>', 'a', 'beautiful', 'blonde', 'woman', 'in', 'tight', 'blue', 'jeans', '.', '</END>']
+
+['</START>', 'a', 'baseball', 'player', 'is', 'swinging', 'a', 'bat', 'at', 'a', 'ball', '</END>']
+['</START>', 'a', 'baseball', 'player', 'holds', 'his', 'bat', 'ready', 'to', 'swing', '</END>']
+
+['</START>', 'two', 'women', 'standing', 'next', 'to', 'each', 'other', 'in', 'front', 'of', 'a', 'tree', '.', '</END>']
+['</START>', 'a', 'man', 'and', 'woman', 'are', 'hanging', 'out', 'at', 'a', 'park', '</END>']
+
+['</START>', 'a', 'plate', 'of', 'food', 'with', 'a', 'fork', 'and', 'a', 'glass', 'of', 'wine', '.', '</END>']
+['</START>', 'there', 'is', 'a', 'plate', 'with', 'some', 'mashed', 'potatoes', 'and', 'carrots', 'on', 'it', '.', '</END>']
+
+['</START>', 'a', 'person', 'holding', 'a', 'hot', 'dog', 'in', 'a', 'bun', '.', '</END>']
+['</START>', 'a', 'close', 'shot', 'of', 'a', 'half', 'eaten', 'pastry', '.', '</END>']
+
+['</START>', 'a', 'kitchen', 'with', 'a', 'stove', 'and', 'a', 'microwave', '</END>']
+['</START>', 'a', 'picture', 'of', 'a', 'old', 'vinyl', 'player', 'and', 'tape', 'recorder', '.', '</END>']
+
+['</START>', 'a', 'wooden', 'bench', 'sitting', 'in', 'a', 'wooden', 'chair', '.', '</END>']
+['</START>', 'two', 'stuffed', 'animals', 'in', 'a', 'wooden', 'outdoor', 'chair', '.', '</END>']
+
+['</START>', 'a', 'bunch', 'of', 'bananas', 'are', 'on', 'a', 'table', '.', '</END>']
+['</START>', 'some', 'bananas', 'are', 'for', 'sale', 'at', 'a', 'store', '.', '</END>']
+
+['</START>', 'a', 'herd', 'of', 'elephants', 'walking', 'across', 'a', 'dirt', 'field', '.', '</END>']
+['</START>', 'a', 'group', 'of', 'several', 'elephants', 'walk', 'through', 'the', 'mud', '</END>']
+
+['</START>', 'a', 'person', 'is', 'holding', 'a', 'banana', 'in', 'front', 'of', 'a', 'computer', 'keyboard', '.', '</END>']
+['</START>', 'a', 'small', 'cellphone', 'is', 'on', 'its', 'side', 'on', 'a', 'table', '</END>']
+
+['</START>', 'a', 'black', 'and', 'white', 'photo', 'of', 'a', 'plane', 'on', 'a', 'runway', '.', '</END>']
+['</START>', 'men', 'preparing', 'an', 'old', 'prop', 'plane', 'for', 'a', 'trip', '.', '</END>']
+
+['</START>', 'a', 'man', 'riding', 'a', 'wave', 'on', 'top', 'of', 'a', 'surfboard', '.', '</END>']
+['</START>', 'a', 'man', 'in', 'a', 'wet', 'suit', 'riding', 'a', 'wave', 'on', 'a', 'surfboard', '.', '</END>']
+
+['</START>', 'a', 'man', 'is', 'doing', 'a', 'trick', 'on', 'a', 'skateboard', '.', '</END>']
+['</START>', 'a', 'young', 'man', 'is', 'trying', 'to', 'pull', 'off', 'a', 'high', '</UNK>', 'skateboard', 'trick', '.', '</END>']
+
+['</START>', 'a', 'man', 'standing', 'in', 'a', 'kitchen', 'preparing', 'food', '.', '</END>']
+['</START>', 'a', 'man', '</UNK>', 'a', 'cupcake', 'tray', 'into', 'the', 'oven', '.', '</END>']
+
+['</START>', 'a', 'plate', 'of', 'food', 'with', 'a', 'fork', 'and', 'knife', '.', '</END>']
+['</START>', 'a', 'plate', 'topped', 'with', 'waffles', ',', 'bacon', 'and', 'banana', 'slices', '.', '</END>']
+
+['</START>', 'a', 'motorcycle', 'parked', 'on', 'the', 'side', 'of', 'a', 'road', '.', '</END>']
+['</START>', 'there', 'are', 'two', 'motor', 'bikes', 'parked', 'near', 'some', 'cars', '.', '</END>']
+
+['</START>', 'a', 'bathroom', 'with', 'a', 'sink', ',', 'mirror', 'and', 'a', 'mirror', '.', '</END>']
+['</START>', 'a', 'bathroom', 'has', 'a', 'bathtub', ',', 'sink', 'and', 'window', 'in', 'it', '.', '</END>']
+
+['</START>', 'a', 'woman', 'is', 'standing', 'on', 'a', 'beach', 'with', 'a', 'surfboard', '.', '</END>']
+['</START>', 'a', 'woman', 'in', 'a', 'bathing', 'suit', 'holding', 'a', 'frisbee', 'on', 'a', 'beach', '.', '</END>']
+
