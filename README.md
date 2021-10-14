@@ -33,7 +33,7 @@ Greedy evaluation (sample the most probable token at every time-step)
 Generated caption:
 `['</START>', 'a', 'woman', 'is', 'holding', 'a', 'wii', 'remote', 'in', 'her', 'hand', '.', '</END>']`\
 Label caption:
-`['</START>', 'a', 'beautiful', 'blonde', 'woman', 'in', 'tight', 'blue', 'jeans', '.', '</END>']`\
+`['</START>', 'a', 'beautiful', 'blonde', 'woman', 'in', 'tight', 'blue', 'jeans', '.', '</END>']`
 
 It got the Wii Remote. Nice. 
 
@@ -42,7 +42,7 @@ It got the Wii Remote. Nice.
 Generated caption:
 `['</START>', 'two', 'women', 'standing', 'next', 'to', 'each', 'other', 'in', 'front', 'of', 'a', 'tree', '.', '</END>']`\
 Label caption:
-`['</START>', 'a', 'man', 'and', 'woman', 'are', 'hanging', 'out', 'at', 'a', 'park', '</END>']`\
+`['</START>', 'a', 'man', 'and', 'woman', 'are', 'hanging', 'out', 'at', 'a', 'park', '</END>']`
 
 Umm, moving on.
 
@@ -50,7 +50,7 @@ Umm, moving on.
 Generated caption:
 `['</START>', 'a', 'kitchen', 'with', 'a', 'stove', 'and', 'a', 'microwave', '</END>']`\
 Label caption:
-`['</START>', 'a', 'picture', 'of', 'a', 'old', 'vinyl', 'player', 'and', 'tape', 'recorder', '.', '</END>']`\
+`['</START>', 'a', 'picture', 'of', 'a', 'old', 'vinyl', 'player', 'and', 'tape', 'recorder', '.', '</END>']`
 
 Dumb model!
 
@@ -58,7 +58,7 @@ Dumb model!
 Generated caption:
 `['</START>', 'a', 'herd', 'of', 'elephants', 'walking', 'across', 'a', 'dirt', 'field', '.', '</END>']`\
 Label caption:
-`['</START>', 'a', 'group', 'of', 'several', 'elephants', 'walk', 'through', 'the', 'mud', '</END>']`\
+`['</START>', 'a', 'group', 'of', 'several', 'elephants', 'walk', 'through', 'the', 'mud', '</END>']`
 
 Good job.
 
@@ -67,7 +67,7 @@ Good job.
 Generated caption:
 `['</START>', 'a', 'man', 'is', 'doing', 'a', 'trick', 'on', 'a', 'skateboard', '.', '</END>']`\
 Label caption:
-`['</START>', 'a', 'young', 'man', 'is', 'trying', 'to', 'pull', 'off', 'a', 'high', '</UNK>', 'skateboard', 'trick', '.', '</END>']`\
+`['</START>', 'a', 'young', 'man', 'is', 'trying', 'to', 'pull', 'off', 'a', 'high', '</UNK>', 'skateboard', 'trick', '.', '</END>']`
 
 Decent job. The name of the trick got cut-off in the label due to count threshold for the vocabulary.
 
