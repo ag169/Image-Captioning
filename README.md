@@ -1,6 +1,6 @@
 # Image Captioning
 
-My implementation of image-captioning using Pytorch.
+My implementation of image-captioning using PyTorch.
 
 Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 Laptop.
 
@@ -10,8 +10,7 @@ Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 La
 3) OpenCV, PyYAML, tensorboardX, tqdm
 4) Java SDK 1.8.0 (to run COCO-Eval-Cap metric computations)
 
-### Performance Metrics
-The evaluation metrics are as follows:
+### Results
 
 #### 1) ResNet50-LSTM
 This model encodes the image into a 512-dim vector using a Resnet50 model and uses that as\
