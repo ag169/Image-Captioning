@@ -6,6 +6,7 @@ import os
 import torch
 from datasets import get_dataloader
 from models import get_model
+from utils.file_ops import make_folder
 
 import torchvision.transforms as tv_t
 import numpy as np
@@ -100,6 +101,12 @@ if __name__ == '__main__':
                              std=[1. / 0.229, 1. / 0.224, 1. / 0.225])
 
     if args.vis:
+        result_dir = os.path.join(args.cdr, 'caption_result')
+        make_folder(result_dir)
+
+        captions = list()
+        targets = list()
+
         with torch.no_grad():
             for ii, data in enumerate(data_loader):
                 if ii >= 20:
@@ -111,6 +118,7 @@ if __name__ == '__main__':
 
                 image = np.transpose(i_np, axes=(1, 2, 0)) * 255
                 image = image.astype(np.uint8)
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
                 if args.cuda:
                     x = x.cuda()
@@ -120,12 +128,24 @@ if __name__ == '__main__':
                 caption_tokens = [index2token[x] for x in caption_inds]
                 target_tokens = [index2token[int(x)] for x in data[1][0]]
 
+                captions.append(caption_tokens)
+                targets.append(target_tokens)
+
+                imname = 'img_' + str(ii).zfill(4) + '.jpg'
+                cv2.imwrite(os.path.join(result_dir, imname), image)
+
                 print(caption_tokens)
                 print(target_tokens)
                 print()
 
-                cv2.imshow('img', cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
+                cv2.imshow('img', image)
                 cv2.waitKey()
+
+        with open(os.path.join(result_dir, 'results.txt'), 'w') as fp:
+            for caption, target in zip(captions, targets):
+                fp.writelines(str(caption) + '\n')
+                fp.writelines(str(target) + '\n')
+                fp.writelines('\n')
     else:
         references = list()
         hypotheses = list()
