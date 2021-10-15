@@ -26,7 +26,7 @@ The model is trained with 'label forcing', i.e. it only sees the label tokens as
 This is an initial implementation with the following hyperparameters:\
 300-dim embeddings (from-scratch), 512-dim LSTM layer, token-count cutoff of 10, 16 batch-size.\
 Trained for 25 epochs/647k steps (19 epochs: Encoder frozen, 6 epochs: End-to-end Training)\
-Time to train: 14.5 hours
+Time to train: 14.5 hours on my laptop
 
 Cross-Entropy Loss, Adam Optimizer, No gradient clipping, Trained with Automatic Mixed-Precision\
 Greedy evaluation (sampling the most probable token at every time-step)
