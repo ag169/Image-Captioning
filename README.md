@@ -79,6 +79,7 @@ Decent job. The name of the trick got cut-off in the label due to count threshol
 
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
+2) Andrej Karpathy's lecture on Image Captioning: https://youtu.be/yCC09vCHzF8?t=1876
 2) Pycocoevalcap: https://github.com/Illuminati91/pycocoevalcap
 3) Image Captioning Tutorial: https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/image_captioning
 4) Image Captioning Repo: https://github.com/sauravraghuvanshi/Udacity-Computer-Vision-Nanodegree-Program/tree/master/project_2_image_captioning_project
