@@ -2,7 +2,7 @@
 
 My implementation of image-captioning using PyTorch.
 
-Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 Laptop.
+Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 Laptop with an RTX 3060 GPU.
 
 ### Requirements
 1) PyTorch
@@ -20,7 +20,7 @@ the hidden state for generating the first output token. The first input token is
 This is an initial implementation with the following hyperparameters:\
 300-dim embeddings (from-scratch), 512-dim LSTM layer, token-count cutoff of 10, 16 batch-size.\
 Trained for 25 epochs (19 epochs: Encoder frozen, 6 epochs: End-to-end Training)\
-Cross-Entropy Loss, Adam Optimizer, No gradient clipping\
+Cross-Entropy Loss, Adam Optimizer, No gradient clipping, Trained with Automatic Mixed-Precision\
 Greedy evaluation (sampling the most probable token at every time-step)
 
 Performance metrics on MSCOCO val2014 captions set:
