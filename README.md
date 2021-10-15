@@ -2,7 +2,7 @@
 
 My implementation of image-captioning using PyTorch.
 
-Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 Laptop with an RTX 3060 GPU.
+Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 Laptop with an RTX 3060 GPU (ROG Zephyrus G14).
 
 ### Requirements
 1) PyTorch
