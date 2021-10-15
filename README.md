@@ -19,7 +19,7 @@ the hidden state for generating the first output token. The first input token is
 The model then generates the next token conditioned on its current hidden state(s) and input token\
 until it generates the `</END>` token.
 
-The model is trained with 'label forcing', i.e. it only sees the label tokens as its inputs.
+The model is trained with 'label forcing', i.e. it only sees the label tokens as its inputs during training.
 
 This is an initial implementation with the following hyperparameters:\
 300-dim embeddings (from-scratch), 512-dim LSTM layer, token-count cutoff of 10, 16 batch-size.\
