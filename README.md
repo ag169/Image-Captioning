@@ -19,6 +19,8 @@ the hidden state for generating the first output token. The first input token is
 The model then generates the next token conditioned on its current hidden state(s) and input token\
 until it generates the `</END>` token.
 
+The model's inference function adds the `</START>` token to the output-list before appending its output tokens.
+
 The model is trained with 'label forcing', i.e. it only sees the label tokens as its inputs during training.
 
 This is an initial implementation with the following hyperparameters:\
