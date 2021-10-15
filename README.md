@@ -79,3 +79,4 @@ Decent job. The name of the trick got cut-off in the label due to count threshol
 ### References
 1) Pycocoevalcap: https://github.com/Illuminati91/pycocoevalcap
 2) Image Captioning Tutorial: https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/image_captioning
+3) Image Captioning Repo: https://github.com/sauravraghuvanshi/Udacity-Computer-Vision-Nanodegree-Program/tree/master/project_2_image_captioning_project
