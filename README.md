@@ -40,7 +40,7 @@ Performance metrics on MSCOCO val2014 captions set:
 | ROUGE_L       | 0.5008 |
 | CIDEr         | 0.7806|
 
-[Captioning results](checkpoints/c1_r50_lstm/caption_result): 
+[Captioning results](checkpoints/c1_r50_lstm/caption_result) on images randomly sampled from MSCOCO val2014: 
 
 ![](checkpoints/c1_r50_lstm/caption_result/img_0002.jpg) \
 Generated caption:
