@@ -33,7 +33,7 @@ Inference using greedy/max eval or using beam-search.
 
 Performance metrics on MSCOCO val2014 captions set:
 
-| Metric        | Value (beam-size 1)  | Value (beam-size 3) | Value (beam-size 5) |
+| Metric        | Beam-size 1 / Max  | Beam-size 3 | Beam-size 5 |
 | ------------- |:--------------------:|:-------------------:|:-------------------:|
 | Bleu_4        | 0.2523 | 0.2804 | 0.2796 |
 | METEOR        | 0.2278 | 0.2337 | 0.2331 |
