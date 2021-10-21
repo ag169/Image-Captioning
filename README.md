@@ -39,6 +39,7 @@ Performance metrics on MSCOCO val2014 captions set:
 | METEOR        | 0.2278 | 0.2337 | 0.2331 |
 | ROUGE_L       | 0.5008 | 0.5080 | 0.5043 |
 | CIDEr         | 0.7806 | 0.8165 | 0.8114 |
+| Inference Speed (in fps) | 60 | 23 | 10  |
 
 [Captioning results](checkpoints/c1_r50_lstm/caption_result) for greedy/max evaluation on images randomly sampled from MSCOCO val2014: 
 
