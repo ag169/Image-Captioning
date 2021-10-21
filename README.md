@@ -29,18 +29,18 @@ Trained for 25 epochs/647k steps (19 epochs: Encoder frozen, 6 epochs: End-to-en
 Time to train: 14.5 hours on my laptop
 
 Cross-Entropy Loss, Adam Optimizer, No gradient clipping, Trained with Automatic Mixed-Precision\
-Greedy evaluation (sampling the most probable token at every time-step)
+Inference using greedy/max eval or using beam-search.
 
 Performance metrics on MSCOCO val2014 captions set:
 
-| Metric        | Value  |
-| ------------- |:------:|
-| Bleu_4        | 0.2523 |
-| METEOR        | 0.2278 |
-| ROUGE_L       | 0.5008 |
-| CIDEr         | 0.7806|
+| Metric        | Value (beam-size 1)  | Value (beam-size 3) | Value (beam-size 5) |
+| ------------- |:--------------------:|:-------------------:|:-------------------:|
+| Bleu_4        | 0.2523 | 0.2804 | 0.2796 |
+| METEOR        | 0.2278 | 0.2337 | 0.2331 |
+| ROUGE_L       | 0.5008 | 0.5080 | 0.5043 |
+| CIDEr         | 0.7806 | 0.8165 | 0.8114 |
 
-[Captioning results](checkpoints/c1_r50_lstm/caption_result) on images randomly sampled from MSCOCO val2014: 
+[Captioning results](checkpoints/c1_r50_lstm/caption_result) for greedy/max evaluation on images randomly sampled from MSCOCO val2014: 
 
 ![](checkpoints/c1_r50_lstm/caption_result/img_0002.jpg) \
 Generated caption:
