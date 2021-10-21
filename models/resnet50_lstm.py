@@ -43,6 +43,8 @@ class ResNet50LSTM(nn.Module):
 
         self.hidden = None
 
+        self.random_temp = 1.0
+
     def init_hidden_cell(self, enc_out):
         batch_size = enc_out.size(0)
         dtype = enc_out.dtype
@@ -77,90 +79,22 @@ class ResNet50LSTM(nn.Module):
 
         return output
 
-    # '''
-    def inference(self, x, end_index=3, start_index=2, max_token=52):
-        assert len(x.size()) == 4
-        assert x.size(0) == 1
-
-        output = [start_index]
-
+    def get_encoder_output(self, x):
         enc_out = self.encoder(x)
         enc_out = self.encoder_fc(torch.flatten(enc_out, 1))
 
-        hidden_cell = self.init_hidden_cell(enc_out)
+        return enc_out
 
-        lstm_input = self.embedding(torch.LongTensor([start_index]).to(enc_out.device)).unsqueeze(1)
-
-        token_count = 0
-
-        while token_count < max_token:
-            lstm_out, hidden_cell = self.lstm(lstm_input, hidden_cell)
-            lstm_out = self.act(lstm_out)
-            net_output = self.linear(lstm_out)
-
-            _, max_ind = torch.max(net_output.squeeze(1), dim=1)
-
-            output.append(max_ind.cpu()[0].item())
-
-            if max_ind == end_index:
-                break
-
-            lstm_input = self.embedding(max_ind).unsqueeze(1)
-
-            token_count += 1
-
-        return output
-    # '''
-
-    # TODO: Implement beam search inference
-    '''
-    def inference(self, x, beam_size=3, end_index=3, start_index=2, max_token=52):
-        assert len(x.size()) == 4
-        assert x.size(0) == 1
-
-        output = [start_index]
-
-        enc_out = self.encoder(x)
-
-        hidden_cell = self.init_hidden_cell(enc_out)
-
-        sequences = [[[torch.Tensor([start_index]).to(enc_out.device)], 1.0, hidden_cell]]
-
-        lstm_input = self.embedding(torch.LongTensor([start_index]).to(enc_out.device)).unsqueeze(1)
+    def get_decoder_output(self, ind_tensor, hidden_cell):
+        lstm_input = self.embedding(ind_tensor)
+        if len(lstm_input.size()) == 2:
+            lstm_input = lstm_input.unsqueeze(1)
 
         lstm_out, hidden_cell = self.lstm(lstm_input, hidden_cell)
+        lstm_out = self.act(lstm_out)
         net_output = self.linear(lstm_out)
 
-        _, max_ind = torch.max(net_output.squeeze(1), dim=1)
-
-        output.append(max_ind.cpu()[0].item())
-
-        token_count = 0
-
-        while token_count < max_token:
-            token_count += 1
-
-            temp = []
-
-            for seq in sequences:
-                inputs = seq
-
-            lstm_out, hidden_cell = self.lstm(lstm_input, hidden_cell)
-
-            net_output = self.linear(lstm_out)
-
-            _, max_ind = torch.max(net_output.squeeze(1), dim=1)
-
-            output.append(max_ind.cpu()[0].item())
-
-            if max_ind == end_index:
-                break
-
-            lstm_input = self.embedding(max_ind).unsqueeze(1)
-
-
-        return output
-        # '''
+        return net_output, hidden_cell
 
 
 if __name__ == '__main__':
