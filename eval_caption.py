@@ -1,10 +1,12 @@
 import argparse
 import sys
+import copy
 
 import yaml
 import os
 import torch
 from datasets import get_dataloader
+from torch.distributions.categorical import Categorical
 from models import get_model
 from utils.file_ops import make_folder
 
@@ -22,6 +24,113 @@ from pycocoevalcap.eval import COCOEvalCap
 encoder.FLOAT_REPR = lambda o: format(o, '.3f')
 
 
+def inference(net, inp_tensor, end_index=3, start_index=2, max_token=52, random=False):
+    assert len(inp_tensor.size()) == 4
+    assert inp_tensor.size(0) == 1
+
+    output = [start_index]
+
+    enc_out = net.get_encoder_output(inp_tensor)
+
+    hidden_cell = net.init_hidden_cell(enc_out)
+
+    max_ind = torch.LongTensor([start_index]).to(enc_out.device)
+
+    token_count = 0
+
+    random_temp = 1 if hasattr(net, 'random_temp') else net.random_temp
+
+    while token_count < max_token:
+        net_output, hidden_cell = net.get_decoder_output(max_ind, hidden_cell)
+
+        if random:
+            net_output_softmax = torch.softmax(net_output.squeeze(1) / random_temp, dim=1)
+            m = Categorical(net_output_softmax[0])
+            max_ind = m.sample().unsqueeze(0)
+        else:
+            _, max_ind = torch.max(net_output.squeeze(1), dim=1)
+
+        output.append(max_ind.cpu()[0].item())
+
+        if max_ind == end_index:
+            break
+
+        token_count += 1
+
+    return output
+
+
+def beam_search_inference(net, inp_tensor, beam_size=3, end_index=3, start_index=2, max_token=53, return_all=False):
+    assert len(inp_tensor.size()) == 4
+    assert inp_tensor.size(0) == 1
+
+    enc_out = net.get_encoder_output(inp_tensor)
+
+    hidden_cell_i = net.init_hidden_cell(enc_out)
+
+    start_input = torch.LongTensor([start_index]).to(enc_out.device)
+
+    net_output, hidden_cell_o = net.get_decoder_output(start_input, hidden_cell_i)
+
+    softmax_score = torch.log_softmax(net_output.squeeze(1), dim=1)
+    sorted_score, token_indices = torch.sort(softmax_score, dim=1, descending=True)
+
+    output_list = list()
+    for ii in range(beam_size):
+        token_ind = token_indices[:, ii]
+        score = sorted_score[0, ii]
+
+        output_list.append([[start_input, token_ind], hidden_cell_o, score])
+
+    token_count = 2
+
+    while token_count < max_token:
+        token_count += 1
+
+        temp = list()
+        c_flag = False
+
+        for seq in output_list:
+            token_inds, hidden_cell, score = seq
+
+            if int(token_inds[-1][0]) == end_index:
+                temp.append(seq)
+            else:
+                c_flag = True
+
+                net_output, hidden_cell_o = net.get_decoder_output(token_inds[-1], hidden_cell)
+
+                softmax_score = torch.log_softmax(net_output.squeeze(1), dim=1)
+                sorted_score, token_indices = torch.sort(softmax_score, dim=1, descending=True)
+
+                for ii in range(beam_size):
+                    token_ind_list = copy.copy(token_inds)
+                    token_ind_list.append(token_indices[:, ii])
+                    score_new = score + sorted_score[0, ii]
+                    temp.append([token_ind_list, hidden_cell_o, score_new])
+
+        if not c_flag:
+            break
+
+        temp.sort(key=lambda _x: _x[-1], reverse=True)
+        output_list = temp[:beam_size]
+
+    if return_all:
+        output = list()
+
+        for beam_op in output_list:
+            token_inds, hidden_cell, score = beam_op
+
+            o_list = [int(x_) for x_ in token_inds]
+
+            output.append(o_list)
+
+        return output
+    else:
+        token_inds = output_list[0][0]
+        return [int(x_) for x_ in token_inds]
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
@@ -36,6 +145,8 @@ if __name__ == '__main__':
                         help='Enable Visualization Mode')
 
     parser.add_argument('--suffix', default='latest', type=str)
+
+    parser.add_argument('--beam_size', default='1', type=int)
 
     args = parser.parse_args()
 
@@ -123,9 +234,16 @@ if __name__ == '__main__':
                 if args.cuda:
                     x = x.cuda()
 
-                caption_inds = net.inference(x, end_index=end_token_index)
+                if args.beam_size == 1:
+                    caption_inds = inference(net, x, end_index=end_token_index, start_index=start_token_index)
+                    caption_tokens = [index2token[x] for x in caption_inds]
 
-                caption_tokens = [index2token[x] for x in caption_inds]
+                else:
+                    caption_inds = beam_search_inference(net, x, beam_size=args.beam_size,
+                                                         end_index=end_token_index, start_index=start_token_index,
+                                                         return_all=True)
+                    caption_tokens = [[index2token[x] for x in y] for y in caption_inds]
+
                 target_tokens = [index2token[int(x)] for x in data[1][0]]
 
                 captions.append(caption_tokens)
@@ -159,21 +277,13 @@ if __name__ == '__main__':
                 if args.cuda:
                     x = x.cuda()
 
-                caption_inds = net.inference(x, end_index=end_token_index)
-
-                if isinstance(caption_inds[0], int):
-                    caption_inds_single = [x for x in caption_inds if x not in ignore_set]
+                if args.beam_size == 1:
+                    caption_inds = inference(net, x, end_index=end_token_index, start_index=start_token_index)
                 else:
-                    # TODO: Use the confidence for each caption and send the best caption
+                    caption_inds = beam_search_inference(net, x, beam_size=args.beam_size,
+                                                         end_index=end_token_index, start_index=start_token_index)
 
-                    '''
-                    caption_inds = [[x for x in y if x not in ignore_set] for y in caption_inds]
-                    caption_inds_single = caption_inds[0]
-                    '''
-
-                    raise NotImplementedError
-
-                caption_hypothesis = [index2token[x] for x in caption_inds_single]
+                caption_hypothesis = [index2token[x] for x in caption_inds if x not in ignore_set]
 
                 hypothesis = ' '.join(caption_hypothesis)
                 img_id = data[4]
@@ -185,7 +295,7 @@ if __name__ == '__main__':
 
                 results.append(result)
 
-        resFile = os.path.join(args.cdr, f'result_{args.suffix}.json')
+        resFile = os.path.join(args.cdr, f'result_beam-size_{args.beam_size}_suffix_{args.suffix}.json')
         with open(resFile, 'w') as fp:
             json.dump(results, fp)
 
@@ -199,7 +309,7 @@ if __name__ == '__main__':
 
         evaluation_scores = cocoEval.eval
 
-        with open(os.path.join(args.cdr, f'scores_{args.suffix}.txt'), 'w') as fp:
+        with open(os.path.join(args.cdr, f'scores__beam-size_{args.beam_size}_suffix_{args.suffix}.txt'), 'w') as fp:
             for k, v in evaluation_scores.items():
                 if len(k) < 7:
                     fp.writelines(f'{k}:\t\t{v}\n')
