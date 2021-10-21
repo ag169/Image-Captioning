@@ -1,6 +1,7 @@
 model:
   arch: r50_lstm
   params:
+    embedding_dim: 300
     hidden_dim: 512
 dataset:
   name: coco_caption
