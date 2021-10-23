@@ -9,7 +9,8 @@ Developed & tested with Python 3.8, PyTorch 1.8.1 & CUDA 11.4 on a Windows 11 La
 2) CUDA + CUDNN compatible with the PyTorch version installed
 3) OpenCV, PyYAML, tensorboardX, tqdm
 4) Java SDK 1.8.0 (to run COCO-Eval-Cap metric computations)
-5) MSCOCO train2014 and val2014 images + annotations
+5) [PyCOCOTools for Windows](https://pypi.org/project/pycocotools-windows/) (if running on a Windows machine)
+6) [MSCOCO train2014 and val2014 images + annotations](https://cocodataset.org/#download)
 
 ### Results
 
