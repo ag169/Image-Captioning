@@ -1,0 +1,23 @@
+model:
+  arch: eb4_lstm
+  params:
+    embedding_dim: 300
+    hidden_dim: 512
+dataset:
+  name: coco_caption
+  train:
+    imgsize: 380
+    batchsize: 16
+    n_workers: 4
+  val:
+    imgsize: 380
+    batchsize: 4
+    n_workers: 2
+lr: 1.0e-3
+weight_decay: 0
+loss: ce
+early_eval: False
+val_interval: 5
+nepochs: 25
+freeze_enc: True
+resume:

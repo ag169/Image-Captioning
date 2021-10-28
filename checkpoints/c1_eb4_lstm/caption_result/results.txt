@@ -1,0 +1,60 @@
+[['</START>', 'a', 'herd', 'of', 'cattle', 'grazing', 'on', 'a', 'lush', 'green', 'field', '.', '</END>'], ['</START>', 'a', 'herd', 'of', 'cattle', 'standing', 'next', 'to', 'each', 'other', '.', '</END>'], ['</START>', 'a', 'herd', 'of', 'cattle', 'grazing', 'on', 'a', 'lush', 'green', 'hillside', '.', '</END>']]
+['</START>', 'a', 'horse', 'and', 'several', 'cows', 'feed', 'on', 'hay', '.', '</END>']
+
+[['</START>', 'a', 'group', 'of', 'vases', 'sitting', 'on', 'top', 'of', 'a', 'table', '.', '</END>'], ['</START>', 'a', 'group', 'of', 'vases', 'sitting', 'next', 'to', 'each', 'other', '.', '</END>'], ['</START>', 'a', 'group', 'of', 'vases', 'sitting', 'on', 'top', 'of', 'a', 'shelf', '.', '</END>']]
+['</START>', 'a', '</UNK>', 'cabinet', 'displaying', 'an', 'assortment', 'of', 'vases', '.', '</END>']
+
+[['</START>', 'a', 'motorcycle', 'parked', 'on', 'the', 'side', 'of', 'a', 'road', '.', '</END>'], ['</START>', 'a', 'motorcycle', 'parked', 'on', 'the', 'side', 'of', 'a', 'street', '.', '</END>'], ['</START>', 'a', 'motorcycle', 'parked', 'on', 'the', 'side', 'of', 'the', 'road', '.', '</END>']]
+['</START>', 'a', 'couple', 'riding', 'on', 'a', 'horse', 'drawn', 'wagon', '.', '</END>']
+
+[['</START>', 'a', 'woman', 'talking', 'on', 'a', 'cell', 'phone', 'in', 'a', 'crowd', '.', '</END>'], ['</START>', 'a', 'woman', 'talking', 'on', 'a', 'cell', 'phone', 'while', 'standing', 'in', 'the', 'rain', '.', '</END>'], ['</START>', 'a', 'woman', 'talking', 'on', 'a', 'cell', 'phone', 'while', 'standing', 'in', 'a', 'crowd', '.', '</END>']]
+['</START>', 'a', 'woman', 'in', 'the', 'process', 'of', 'talking', 'on', 'her', 'cell', 'phone', '.', '</END>']
+
+[['</START>', 'a', 'black', 'and', 'white', 'bear', 'is', 'standing', 'in', 'a', 'forest', '.', '</END>'], ['</START>', 'a', 'black', 'and', 'white', 'bear', 'is', 'standing', 'in', 'the', 'woods', '.', '</END>'], ['</START>', 'a', 'black', 'and', 'white', 'bear', 'is', 'standing', 'on', 'a', 'rock', '.', '</END>']]
+['</START>', 'a', 'panda', 'bear', 'walking', 'around', 'in', 'the', 'middle', 'of', 'a', 'enclosure', '.', '</END>']
+
+[['</START>', 'a', 'close', 'up', 'of', 'a', 'plate', 'of', 'doughnuts', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'plate', 'of', 'donuts', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'plate', 'of', 'doughnuts', 'on', 'a', 'table', '</END>']]
+['</START>', 'a', 'plate', 'of', 'food', 'that', 'includes', 'a', 'sandwich', 'and', 'onion', 'rings', '.', '</END>']
+
+[['</START>', 'a', 'black', 'and', 'white', 'photo', 'of', 'a', 'group', 'of', 'people', 'sitting', 'on', 'a', 'bench', '.', '</END>'], ['</START>', 'a', 'black', 'and', 'white', 'photo', 'of', 'a', 'group', 'of', 'people', 'in', 'a', 'room', '.', '</END>'], ['</START>', 'a', 'black', 'and', 'white', 'photo', 'of', 'a', 'group', 'of', 'people', 'sitting', 'on', 'a', 'bench', '</END>']]
+['</START>', 'an', 'old', 'class', 'photo', 'of', 'boys', 'and', 'their', 'teachers', '.', '</END>']
+
+[['</START>', 'a', 'white', 'sink', 'sitting', 'next', 'to', 'a', 'white', 'sink', '.', '</END>'], ['</START>', 'a', 'white', 'sink', 'sitting', 'next', 'to', 'a', 'white', 'toilet', '.', '</END>'], ['</START>', 'a', 'white', 'sink', 'sitting', 'next', 'to', 'a', 'bathroom', 'sink', '.', '</END>']]
+['</START>', 'a', 'bathroom', 'with', 'two', 'sinks', 'and', 'a', 'mirror', '.', '</END>']
+
+[['</START>', 'a', 'close', 'up', 'of', 'a', 'street', 'sign', 'on', 'a', 'pole', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'street', 'sign', 'with', 'a', 'sky', 'background', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'street', 'sign', 'on', 'a', 'street', '</END>']]
+['</START>', 'a', 'couple', 'of', 'green', 'street', 'signs', 'mounted', 'above', 'a', 'stop', 'sign', '.', '</END>']
+
+[['</START>', 'a', 'train', 'on', 'a', 'track', 'near', 'a', 'platform', '</END>'], ['</START>', 'a', 'train', 'traveling', 'down', 'tracks', 'next', 'to', 'a', 'train', 'station', '.', '</END>'], ['</START>', 'a', 'train', 'traveling', 'down', 'train', 'tracks', 'next', 'to', 'a', 'train', 'station', '.', '</END>']]
+['</START>', 'a', 'train', 'is', 'rolling', 'through', 'a', 'train', 'yard', '.', '</END>']
+
+[['</START>', 'a', 'man', 'is', 'playing', 'tennis', 'on', 'a', 'tennis', 'court', '.', '</END>'], ['</START>', 'a', 'man', 'is', 'playing', 'tennis', 'on', 'a', 'court', '</END>'], ['</START>', 'a', 'man', 'is', 'playing', 'tennis', 'on', 'a', 'court', '.', '</END>']]
+['</START>', 'a', 'tennis', 'player', 'gets', 'ready', 'to', 'hit', 'a', 'ball', 'with', 'a', 'racket', '</END>']
+
+[['</START>', 'a', 'close', 'up', 'of', 'a', 'sandwich', 'on', 'a', 'plate', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'sandwich', 'on', 'a', 'plate', '.', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'piece', 'of', 'food', 'on', 'a', 'plate', '</END>']]
+['</START>', 'a', 'sandwich', 'sitting', 'on', 'top', 'of', 'a', 'frying', 'pan', '.', '</END>']
+
+[['</START>', 'a', 'man', 'in', 'a', 'red', 'jacket', 'is', 'standing', 'in', 'the', 'snow', '.', '</END>'], ['</START>', 'a', 'man', 'standing', 'on', 'a', 'snowy', 'hill', 'with', 'a', 'snowboard', '.', '</END>'], ['</START>', 'a', 'man', 'in', 'a', 'red', 'jacket', 'is', 'standing', 'in', 'the', 'snow', '</END>']]
+['</START>', 'a', 'snowboard', 'is', 'left', 'vacant', 'in', 'view', 'of', 'large', 'snow', 'capped', 'mountains', '.', '</END>']
+
+[['</START>', 'a', 'close', 'up', 'of', 'a', 'street', 'sign', 'on', 'a', 'pole', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'street', 'sign', 'with', 'a', 'sky', 'background', '</END>'], ['</START>', 'a', 'close', 'up', 'of', 'a', 'street', 'sign', 'on', 'a', 'street', '</END>']]
+['</START>', 'a', 'street', 'sign', 'on', 'top', 'of', 'two', 'one', 'way', 'arrow', 'signs', '.', '</END>']
+
+[['</START>', 'a', 'bunch', 'of', 'oranges', 'sitting', 'on', 'top', 'of', 'a', 'table', '.', '</END>'], ['</START>', 'a', 'bunch', 'of', 'oranges', 'sitting', 'on', 'a', 'table', '.', '</END>'], ['</START>', 'a', 'bunch', 'of', 'oranges', 'sitting', 'on', 'top', 'of', 'a', 'wooden', 'table', '.', '</END>']]
+['</START>', 'a', 'boy', 'containing', 'two', 'bananas', 'and', 'three', 'oranges', '.', '</END>']
+
+[['</START>', 'a', 'man', 'flying', 'through', 'the', 'air', 'while', 'riding', 'a', 'kite', '.', '</END>'], ['</START>', 'a', 'man', 'flying', 'through', 'the', 'air', 'while', 'riding', 'a', 'snowboard', '.', '</END>'], ['</START>', 'a', 'man', 'flying', 'through', 'the', 'air', 'while', 'riding', 'a', 'surfboard', '.', '</END>']]
+['</START>', 'view', 'of', 'parasail', 'surfer', 'in', 'mid', 'air', ',', 'still', 'on', 'his', 'board', '.', '</END>']
+
+[['</START>', 'a', 'crowd', 'of', 'people', 'walking', 'down', 'a', 'street', '.', '</END>'], ['</START>', 'a', 'group', 'of', 'people', 'walking', 'down', 'a', 'street', '.', '</END>'], ['</START>', 'a', 'group', 'of', 'people', 'walking', 'down', 'a', 'street', 'with', 'a', 'clock', 'on', 'the', 'top', 'of', 'it', '.', '</END>']]
+['</START>', 'a', 'large', 'tower', 'like', 'structure', 'with', 'a', 'clock', '.', '</END>']
+
+[['</START>', 'a', 'blue', 'and', 'white', 'bus', 'driving', 'down', 'a', 'street', '.', '</END>'], ['</START>', 'a', 'blue', 'and', 'white', 'bus', 'on', 'a', 'city', 'street', '.', '</END>'], ['</START>', 'a', 'blue', 'and', 'white', 'bus', 'is', 'driving', 'down', 'the', 'street', '.', '</END>']]
+['</START>', 'a', 'city', 'bus', 'in', 'the', 'parking', 'lot', 'of', 'a', 'building', '.', '</END>']
+
+[['</START>', 'a', 'row', 'of', 'motorcycles', 'parked', 'on', 'the', 'side', 'of', 'a', 'street', '.', '</END>'], ['</START>', 'a', 'row', 'of', 'motorcycles', 'parked', 'on', 'the', 'side', 'of', 'the', 'street', '.', '</END>'], ['</START>', 'a', 'row', 'of', 'parked', 'motorcycles', 'sitting', 'on', 'the', 'side', 'of', 'a', 'street', '.', '</END>']]
+['</START>', 'a', 'row', 'of', 'motorcycles', 'sits', 'next', 'to', 'a', 'street', 'where', 'cars', 'drive', '.', '</END>']
+
+[['</START>', 'a', 'man', 'riding', 'a', 'wave', 'on', 'top', 'of', 'a', 'surfboard', '.', '</END>'], ['</START>', 'a', 'man', 'riding', 'a', 'surfboard', 'on', 'a', 'wave', 'in', 'the', 'ocean', '.', '</END>'], ['</START>', 'a', 'man', 'riding', 'a', 'wave', 'on', 'a', 'surfboard', '.', '</END>']]
+['</START>', 'a', 'surfer', 'crashes', 'into', 'the', 'ocean', 'after', 'riding', 'a', 'wave', '.', '</END>']
+

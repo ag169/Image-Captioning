@@ -1,8 +1,10 @@
 from .resnet50_lstm import ResNet50LSTM
+from .efficientnetb4_lstm import EfficientNetB4LSTM
 
 
 models = {
     'r50_lstm': ResNet50LSTM,
+    'eb4_lstm': EfficientNetB4LSTM
 }
 
 
