@@ -5,16 +5,9 @@ from torch.nn.utils.rnn import pack_padded_sequence
 
 
 class ResNet50LSTM(nn.Module):
-    def __init__(self, vocab_size, embedding_dim=300, hidden_dim=512):
+    def __init__(self, vocab_size, embedding_dim=300, hidden_dim=512, use_relu=True):
         super(ResNet50LSTM, self).__init__()
         encoder_net = models.resnet50(pretrained=True, progress=False)
-
-        # encoder_net.fc = nn.Sequential(
-        #     nn.Linear(encoder_net.fc.in_features, hidden_dim),
-        #     nn.BatchNorm1d(hidden_dim),
-        # )
-        #
-        # self.encoder = encoder_net
 
         modules = list(encoder_net.children())[:-1]
 
@@ -37,6 +30,8 @@ class ResNet50LSTM(nn.Module):
                             bias=True)
 
         self.act = nn.ReLU()
+        self.use_relu = use_relu
+
         self.d1 = nn.Dropout(p=0.2)
 
         self.linear = nn.Linear(hidden_dim, vocab_size, bias=True)
@@ -73,7 +68,8 @@ class ResNet50LSTM(nn.Module):
         lstm_out = lstm_out[0]
 
         lstm_out = self.d1(lstm_out)
-        lstm_out = self.act(lstm_out)
+        if self.use_relu:
+            lstm_out = self.act(lstm_out)
 
         output = self.linear(lstm_out)
 
@@ -91,7 +87,8 @@ class ResNet50LSTM(nn.Module):
             lstm_input = lstm_input.unsqueeze(1)
 
         lstm_out, hidden_cell = self.lstm(lstm_input, hidden_cell)
-        lstm_out = self.act(lstm_out)
+        if self.use_relu:
+            lstm_out = self.act(lstm_out)
         net_output = self.linear(lstm_out)
 
         return net_output, hidden_cell
@@ -122,9 +119,6 @@ if __name__ == '__main__':
     # Output size varies due to pack_padded_sequence
     # Output will be of size [NUM_VALID_TOKENS, vocab_size]
     print('Output size:', op.size())
-
-    net.eval()
-    token_list = net.inference(ip[0][None, ...])
 
     print('Done')
 
