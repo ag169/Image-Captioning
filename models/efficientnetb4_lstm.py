@@ -9,13 +9,6 @@ class EfficientNetB4LSTM(nn.Module):
         super(EfficientNetB4LSTM, self).__init__()
         encoder_net = models.efficientnet_b4(pretrained=True, progress=False)
 
-        # encoder_net.fc = nn.Sequential(
-        #     nn.Linear(encoder_net.fc.in_features, hidden_dim),
-        #     nn.BatchNorm1d(hidden_dim),
-        # )
-        #
-        # self.encoder = encoder_net
-
         modules = list(encoder_net.children())[:-1]
 
         self.encoder = nn.Sequential(*modules)
@@ -101,7 +94,7 @@ if __name__ == '__main__':
     # Run with dummy tensors to verify functionality
     vocab_size = 8000
 
-    net = ResNet50LSTM(vocab_size=vocab_size)
+    net = EfficientNetB4LSTM(vocab_size=vocab_size)
 
     L = 20
     B = 2
@@ -122,9 +115,6 @@ if __name__ == '__main__':
     # Output size varies due to pack_padded_sequence
     # Output will be of size [NUM_VALID_TOKENS, vocab_size]
     print('Output size:', op.size())
-
-    net.eval()
-    token_list = net.inference(ip[0][None, ...])
 
     print('Done')
 
