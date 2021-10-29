@@ -86,6 +86,26 @@ Label caption:
 
 Decent job. The name of the trick got cut-off in the label due to count threshold for the vocabulary.
 
+#### 2) EfficientNetB4-LSTM with CrossEntropyLoss
+
+| Metric        | Beam-size 1 / Max  | Beam-size 3 |
+| ------------- |:--------------------:|:-------------------:|
+| Bleu_4        | 0.2791 | 0.3069 |
+| METEOR        | 0.2422 | 0.2498 |
+| ROUGE_L       | 0.5207 | 0.5295 |
+| CIDEr         | 0.8849 | 0.9249 |
+| Inference Speed (in fps) | 33 | 17.5 |
+
+#### 3) ResNet50-LSTM with Focal-Loss
+
+| Metric        | Beam-size 1 / Max  | Beam-size 3 | Beam-size 5 |
+| ------------- |:--------------------:|:-------------------:|:-------------------:|
+| Bleu_4        | 0.2587 | 0.2822 | 0.2822 |
+| METEOR        | 0.2329 | 0.2372 | 0.2356 |
+| ROUGE_L       | 0.5044 | 0.5084 | 0.5047 |
+| CIDEr         | 0.8072 | 0.8351 | 0.8311 |
+| Inference Speed (in fps) | 60 | 23 | 10  |
+
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
 2) Andrej Karpathy's lecture on Image Captioning: https://youtu.be/yCC09vCHzF8?t=1876
