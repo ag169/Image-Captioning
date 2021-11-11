@@ -106,6 +106,26 @@ Decent job. The name of the trick got cut-off in the label due to count threshol
 | CIDEr         | 0.8072 | 0.8351 | 0.8311 |
 | Inference Speed (in fps) | 60 | 23 | 10  |
 
+#### 4) ResNeXT50-LSTM with Focal-Loss
+
+| Metric        | Beam-size 1 / Max  | Beam-size 3 | Beam-size 5 |
+| ------------- |:--------------------:|:-------------------:|:-------------------:|
+| Bleu_4        | 0.2642 | 0.2853 | 0.2863 |
+| METEOR        | 0.2369 | 0.2405 | 0.2392 |
+| ROUGE_L       | 0.5092 | 0.5128 | 0.5097 |
+| CIDEr         | 0.8312 | 0.8541 | 0.8501 |
+| Inference Speed (in fps) | 60 | 23 | 10  |
+
+#### 5) ResNeXT50-GRU with Focal-Loss
+
+| Metric        | Beam-size 1 / Max  | Beam-size 3 | Beam-size 5 |
+| ------------- |:--------------------:|:-------------------:|:-------------------:|
+| Bleu_4        | 0.2641 | 0.2919 | 0.2952 |
+| METEOR        | 0.2406 | 0.2451 | 0.2443 |
+| ROUGE_L       | 0.5097 | 0.5168 | 0.5154 |
+| CIDEr         | 0.8460 | 0.8890 | 0.8873 |
+| Inference Speed (in fps) | 60 | 23 | 10  |
+
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
 2) Andrej Karpathy's lecture on Image Captioning: https://youtu.be/yCC09vCHzF8?t=1876
