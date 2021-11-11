@@ -1,0 +1,947 @@
+--------------------------------------------------
+Config is as follows:
+model: {'arch': 'rnxt50_gru', 'params': {'embedding_dim': 300, 'hidden_dim': 512}}
+dataset: {'name': 'coco_caption', 'train': {'imgsize': 224, 'batchsize': 16, 'n_workers': 4, 'token_count_thresh': 10}, 'val': {'imgsize': 224, 'batchsize': 4, 'n_workers': 2, 'token_count_thresh': 10}}
+lr: 0.001
+weight_decay: 0
+loss: focal
+early_eval: False
+val_interval: 2
+nepochs: 25
+freeze_enc: True
+resume: None
+--------------------------------------------------
+loading annotations into memory...
+Done (t=0.51s)
+creating index...
+index created!
+Img size: 224
+loading annotations into memory...
+Done (t=0.25s)
+creating index...
+index created!
+Img size: 224
+Freezing image encoder for a while!
+--------------------------------------------------
+Start Training!
+--------------------------------------------------
+Train | Epoch: 1	Avg Loss: 3.30716	Time: 1.13 mins	No. of steps: 1000
+Train | Epoch: 1	Avg Loss: 2.75776	Time: 0.88 mins	No. of steps: 2000
+Train | Epoch: 1	Avg Loss: 2.62430	Time: 0.86 mins	No. of steps: 3000
+Train | Epoch: 1	Avg Loss: 2.55386	Time: 0.86 mins	No. of steps: 4000
+Train | Epoch: 1	Avg Loss: 2.52674	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 1	Avg Loss: 2.46698	Time: 0.91 mins	No. of steps: 6000
+Train | Epoch: 1	Avg Loss: 2.44443	Time: 0.93 mins	No. of steps: 7000
+Train | Epoch: 1	Avg Loss: 2.42210	Time: 0.94 mins	No. of steps: 8000
+Train | Epoch: 1	Avg Loss: 2.39602	Time: 0.95 mins	No. of steps: 9000
+Train | Epoch: 1	Avg Loss: 2.39089	Time: 0.97 mins	No. of steps: 10000
+Train | Epoch: 1	Avg Loss: 2.35949	Time: 0.97 mins	No. of steps: 11000
+Train | Epoch: 1	Avg Loss: 2.37978	Time: 0.97 mins	No. of steps: 12000
+Train | Epoch: 1	Avg Loss: 2.33751	Time: 0.99 mins	No. of steps: 13000
+Train | Epoch: 1	Avg Loss: 2.34846	Time: 1.01 mins	No. of steps: 14000
+Train | Epoch: 1	Avg Loss: 2.34807	Time: 1.06 mins	No. of steps: 15000
+Train | Epoch: 1	Avg Loss: 2.32366	Time: 1.00 mins	No. of steps: 16000
+Train | Epoch: 1	Avg Loss: 2.32032	Time: 1.01 mins	No. of steps: 17000
+Train | Epoch: 1	Avg Loss: 2.30511	Time: 1.02 mins	No. of steps: 18000
+Train | Epoch: 1	Avg Loss: 2.30246	Time: 1.01 mins	No. of steps: 19000
+Train | Epoch: 1	Avg Loss: 2.30278	Time: 1.01 mins	No. of steps: 20000
+Train | Epoch: 1	Avg Loss: 2.29538	Time: 1.00 mins	No. of steps: 21000
+Train | Epoch: 1	Avg Loss: 2.27744	Time: 1.01 mins	No. of steps: 22000
+Train | Epoch: 1	Avg Loss: 2.27161	Time: 1.01 mins	No. of steps: 23000
+Train | Epoch: 1	Avg Loss: 2.27455	Time: 1.01 mins	No. of steps: 24000
+Train | Epoch: 1	Avg Loss: 2.25414	Time: 1.01 mins	No. of steps: 25000
+
+Train | Epoch: 1	Avg Loss: 2.41813	Time: 25.36 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 2	Avg Loss: 2.15069	Time: 1.24 mins	No. of steps: 1000
+Train | Epoch: 2	Avg Loss: 2.18250	Time: 1.02 mins	No. of steps: 2000
+Train | Epoch: 2	Avg Loss: 2.16935	Time: 1.02 mins	No. of steps: 3000
+Train | Epoch: 2	Avg Loss: 2.17075	Time: 1.06 mins	No. of steps: 4000
+Train | Epoch: 2	Avg Loss: 2.17866	Time: 1.06 mins	No. of steps: 5000
+Train | Epoch: 2	Avg Loss: 2.18515	Time: 1.06 mins	No. of steps: 6000
+Train | Epoch: 2	Avg Loss: 2.18161	Time: 1.07 mins	No. of steps: 7000
+Train | Epoch: 2	Avg Loss: 2.18906	Time: 1.03 mins	No. of steps: 8000
+Train | Epoch: 2	Avg Loss: 2.18316	Time: 1.03 mins	No. of steps: 9000
+Train | Epoch: 2	Avg Loss: 2.18188	Time: 1.03 mins	No. of steps: 10000
+Train | Epoch: 2	Avg Loss: 2.19508	Time: 1.03 mins	No. of steps: 11000
+Train | Epoch: 2	Avg Loss: 2.17760	Time: 1.03 mins	No. of steps: 12000
+Train | Epoch: 2	Avg Loss: 2.18565	Time: 1.03 mins	No. of steps: 13000
+Train | Epoch: 2	Avg Loss: 2.19064	Time: 1.03 mins	No. of steps: 14000
+Train | Epoch: 2	Avg Loss: 2.18339	Time: 1.03 mins	No. of steps: 15000
+Train | Epoch: 2	Avg Loss: 2.17492	Time: 1.03 mins	No. of steps: 16000
+Train | Epoch: 2	Avg Loss: 2.16131	Time: 1.03 mins	No. of steps: 17000
+Train | Epoch: 2	Avg Loss: 2.16092	Time: 0.96 mins	No. of steps: 18000
+Train | Epoch: 2	Avg Loss: 2.17497	Time: 0.91 mins	No. of steps: 19000
+Train | Epoch: 2	Avg Loss: 2.17019	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 2	Avg Loss: 2.16164	Time: 0.91 mins	No. of steps: 21000
+Train | Epoch: 2	Avg Loss: 2.19205	Time: 0.91 mins	No. of steps: 22000
+Train | Epoch: 2	Avg Loss: 2.16548	Time: 0.91 mins	No. of steps: 23000
+Train | Epoch: 2	Avg Loss: 2.18151	Time: 0.93 mins	No. of steps: 24000
+Train | Epoch: 2	Avg Loss: 2.18079	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 2	Avg Loss: 2.17736	Time: 26.01 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Eval  | Epoch: 2	Time: 6.82 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 396573, 'reflen': 391736, 'guess': [396573, 356069, 315565, 275061], 'correct': [255590, 115835, 45327, 18275]}
+ratio: 1.0123476014458692
+Bleu_1: 0.644
+Bleu_2: 0.458
+Bleu_3: 0.311
+Bleu_4: 0.211
+computing CIDEr score...
+CIDEr: 0.661
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 3	Avg Loss: 2.05571	Time: 1.05 mins	No. of steps: 1000
+Train | Epoch: 3	Avg Loss: 2.07070	Time: 0.85 mins	No. of steps: 2000
+Train | Epoch: 3	Avg Loss: 2.07116	Time: 0.88 mins	No. of steps: 3000
+Train | Epoch: 3	Avg Loss: 2.07025	Time: 0.89 mins	No. of steps: 4000
+Train | Epoch: 3	Avg Loss: 2.08366	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 3	Avg Loss: 2.09037	Time: 0.90 mins	No. of steps: 6000
+Train | Epoch: 3	Avg Loss: 2.08443	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 3	Avg Loss: 2.10310	Time: 0.92 mins	No. of steps: 8000
+Train | Epoch: 3	Avg Loss: 2.11472	Time: 0.92 mins	No. of steps: 9000
+Train | Epoch: 3	Avg Loss: 2.10192	Time: 0.91 mins	No. of steps: 10000
+Train | Epoch: 3	Avg Loss: 2.10311	Time: 0.92 mins	No. of steps: 11000
+Train | Epoch: 3	Avg Loss: 2.10942	Time: 0.92 mins	No. of steps: 12000
+Train | Epoch: 3	Avg Loss: 2.09450	Time: 0.92 mins	No. of steps: 13000
+Train | Epoch: 3	Avg Loss: 2.11878	Time: 0.93 mins	No. of steps: 14000
+Train | Epoch: 3	Avg Loss: 2.11340	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 3	Avg Loss: 2.10482	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 3	Avg Loss: 2.10596	Time: 0.93 mins	No. of steps: 17000
+Train | Epoch: 3	Avg Loss: 2.12494	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 3	Avg Loss: 2.11556	Time: 0.91 mins	No. of steps: 19000
+Train | Epoch: 3	Avg Loss: 2.10791	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 3	Avg Loss: 2.10263	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 3	Avg Loss: 2.11473	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 3	Avg Loss: 2.11915	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 3	Avg Loss: 2.11714	Time: 0.92 mins	No. of steps: 24000
+Train | Epoch: 3	Avg Loss: 2.10148	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 3	Avg Loss: 2.10054	Time: 23.78 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 4	Avg Loss: 1.99022	Time: 1.13 mins	No. of steps: 1000
+Train | Epoch: 4	Avg Loss: 2.00833	Time: 0.91 mins	No. of steps: 2000
+Train | Epoch: 4	Avg Loss: 2.02056	Time: 0.93 mins	No. of steps: 3000
+Train | Epoch: 4	Avg Loss: 2.02703	Time: 0.91 mins	No. of steps: 4000
+Train | Epoch: 4	Avg Loss: 2.01946	Time: 0.93 mins	No. of steps: 5000
+Train | Epoch: 4	Avg Loss: 2.03100	Time: 0.93 mins	No. of steps: 6000
+Train | Epoch: 4	Avg Loss: 2.04524	Time: 0.93 mins	No. of steps: 7000
+Train | Epoch: 4	Avg Loss: 2.03154	Time: 0.93 mins	No. of steps: 8000
+Train | Epoch: 4	Avg Loss: 2.04835	Time: 1.00 mins	No. of steps: 9000
+Train | Epoch: 4	Avg Loss: 2.05521	Time: 0.97 mins	No. of steps: 10000
+Train | Epoch: 4	Avg Loss: 2.06840	Time: 0.96 mins	No. of steps: 11000
+Train | Epoch: 4	Avg Loss: 2.05211	Time: 0.98 mins	No. of steps: 12000
+Train | Epoch: 4	Avg Loss: 2.05190	Time: 0.95 mins	No. of steps: 13000
+Train | Epoch: 4	Avg Loss: 2.05127	Time: 0.94 mins	No. of steps: 14000
+Train | Epoch: 4	Avg Loss: 2.05556	Time: 0.95 mins	No. of steps: 15000
+Train | Epoch: 4	Avg Loss: 2.06327	Time: 0.94 mins	No. of steps: 16000
+Train | Epoch: 4	Avg Loss: 2.05684	Time: 1.01 mins	No. of steps: 17000
+Train | Epoch: 4	Avg Loss: 2.06655	Time: 1.02 mins	No. of steps: 18000
+Train | Epoch: 4	Avg Loss: 2.05688	Time: 0.97 mins	No. of steps: 19000
+Train | Epoch: 4	Avg Loss: 2.06226	Time: 0.97 mins	No. of steps: 20000
+Train | Epoch: 4	Avg Loss: 2.09020	Time: 0.98 mins	No. of steps: 21000
+Train | Epoch: 4	Avg Loss: 2.06863	Time: 0.97 mins	No. of steps: 22000
+Train | Epoch: 4	Avg Loss: 2.08384	Time: 1.26 mins	No. of steps: 23000
+Train | Epoch: 4	Avg Loss: 2.07421	Time: 1.01 mins	No. of steps: 24000
+Train | Epoch: 4	Avg Loss: 2.07373	Time: 0.95 mins	No. of steps: 25000
+
+Train | Epoch: 4	Avg Loss: 2.05096	Time: 25.26 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Eval  | Epoch: 4	Time: 6.95 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 399263, 'reflen': 394443, 'guess': [399263, 358759, 318255, 277751], 'correct': [257251, 117892, 47286, 18905]}
+ratio: 1.0122197630582848
+Bleu_1: 0.644
+Bleu_2: 0.460
+Bleu_3: 0.316
+Bleu_4: 0.215
+computing CIDEr score...
+CIDEr: 0.674
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 5	Avg Loss: 1.95279	Time: 1.05 mins	No. of steps: 1000
+Train | Epoch: 5	Avg Loss: 1.97054	Time: 0.88 mins	No. of steps: 2000
+Train | Epoch: 5	Avg Loss: 1.97267	Time: 0.91 mins	No. of steps: 3000
+Train | Epoch: 5	Avg Loss: 1.97799	Time: 0.91 mins	No. of steps: 4000
+Train | Epoch: 5	Avg Loss: 1.98943	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 5	Avg Loss: 1.99781	Time: 0.94 mins	No. of steps: 6000
+Train | Epoch: 5	Avg Loss: 1.99063	Time: 0.93 mins	No. of steps: 7000
+Train | Epoch: 5	Avg Loss: 1.99165	Time: 0.93 mins	No. of steps: 8000
+Train | Epoch: 5	Avg Loss: 1.99612	Time: 0.93 mins	No. of steps: 9000
+Train | Epoch: 5	Avg Loss: 2.00310	Time: 0.93 mins	No. of steps: 10000
+Train | Epoch: 5	Avg Loss: 2.00755	Time: 0.94 mins	No. of steps: 11000
+Train | Epoch: 5	Avg Loss: 2.02082	Time: 0.95 mins	No. of steps: 12000
+Train | Epoch: 5	Avg Loss: 2.02991	Time: 0.96 mins	No. of steps: 13000
+Train | Epoch: 5	Avg Loss: 2.02799	Time: 0.96 mins	No. of steps: 14000
+Train | Epoch: 5	Avg Loss: 2.02721	Time: 0.96 mins	No. of steps: 15000
+Train | Epoch: 5	Avg Loss: 2.01645	Time: 0.96 mins	No. of steps: 16000
+Train | Epoch: 5	Avg Loss: 2.02559	Time: 0.96 mins	No. of steps: 17000
+Train | Epoch: 5	Avg Loss: 2.03560	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 5	Avg Loss: 2.02577	Time: 0.95 mins	No. of steps: 19000
+Train | Epoch: 5	Avg Loss: 2.03333	Time: 1.21 mins	No. of steps: 20000
+Train | Epoch: 5	Avg Loss: 2.03915	Time: 1.13 mins	No. of steps: 21000
+Train | Epoch: 5	Avg Loss: 2.03909	Time: 1.10 mins	No. of steps: 22000
+Train | Epoch: 5	Avg Loss: 2.06096	Time: 1.11 mins	No. of steps: 23000
+Train | Epoch: 5	Avg Loss: 2.04717	Time: 1.00 mins	No. of steps: 24000
+Train | Epoch: 5	Avg Loss: 2.04167	Time: 0.94 mins	No. of steps: 25000
+
+Train | Epoch: 5	Avg Loss: 2.01376	Time: 25.21 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 6	Avg Loss: 1.92702	Time: 1.15 mins	No. of steps: 1000
+Train | Epoch: 6	Avg Loss: 1.93830	Time: 0.93 mins	No. of steps: 2000
+Train | Epoch: 6	Avg Loss: 1.94477	Time: 0.94 mins	No. of steps: 3000
+Train | Epoch: 6	Avg Loss: 1.95797	Time: 0.92 mins	No. of steps: 4000
+Train | Epoch: 6	Avg Loss: 1.96929	Time: 0.93 mins	No. of steps: 5000
+Train | Epoch: 6	Avg Loss: 1.95566	Time: 0.92 mins	No. of steps: 6000
+Train | Epoch: 6	Avg Loss: 1.97154	Time: 0.95 mins	No. of steps: 7000
+Train | Epoch: 6	Avg Loss: 1.95955	Time: 1.00 mins	No. of steps: 8000
+Train | Epoch: 6	Avg Loss: 1.96065	Time: 0.96 mins	No. of steps: 9000
+Train | Epoch: 6	Avg Loss: 1.98183	Time: 0.91 mins	No. of steps: 10000
+Train | Epoch: 6	Avg Loss: 1.98850	Time: 0.92 mins	No. of steps: 11000
+Train | Epoch: 6	Avg Loss: 1.99312	Time: 0.93 mins	No. of steps: 12000
+Train | Epoch: 6	Avg Loss: 1.99188	Time: 0.93 mins	No. of steps: 13000
+Train | Epoch: 6	Avg Loss: 2.00010	Time: 0.93 mins	No. of steps: 14000
+Train | Epoch: 6	Avg Loss: 1.98240	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 6	Avg Loss: 1.99214	Time: 0.93 mins	No. of steps: 16000
+Train | Epoch: 6	Avg Loss: 2.00270	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 6	Avg Loss: 1.99397	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 6	Avg Loss: 1.99987	Time: 0.92 mins	No. of steps: 19000
+Train | Epoch: 6	Avg Loss: 1.99213	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 6	Avg Loss: 2.00452	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 6	Avg Loss: 2.01153	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 6	Avg Loss: 1.99799	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 6	Avg Loss: 2.01157	Time: 0.93 mins	No. of steps: 24000
+Train | Epoch: 6	Avg Loss: 2.01137	Time: 0.93 mins	No. of steps: 25000
+
+Train | Epoch: 6	Avg Loss: 1.98239	Time: 24.31 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Eval  | Epoch: 6	Time: 6.84 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 399686, 'reflen': 394484, 'guess': [399686, 359182, 318678, 278174], 'correct': [261787, 121001, 48681, 19432]}
+ratio: 1.0131868466148157
+Bleu_1: 0.655
+Bleu_2: 0.470
+Bleu_3: 0.323
+Bleu_4: 0.220
+computing CIDEr score...
+CIDEr: 0.697
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 7	Avg Loss: 1.88398	Time: 1.03 mins	No. of steps: 1000
+Train | Epoch: 7	Avg Loss: 1.91013	Time: 0.86 mins	No. of steps: 2000
+Train | Epoch: 7	Avg Loss: 1.91030	Time: 0.89 mins	No. of steps: 3000
+Train | Epoch: 7	Avg Loss: 1.90919	Time: 0.91 mins	No. of steps: 4000
+Train | Epoch: 7	Avg Loss: 1.92622	Time: 0.91 mins	No. of steps: 5000
+Train | Epoch: 7	Avg Loss: 1.94160	Time: 0.92 mins	No. of steps: 6000
+Train | Epoch: 7	Avg Loss: 1.93368	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 7	Avg Loss: 1.94088	Time: 0.94 mins	No. of steps: 8000
+Train | Epoch: 7	Avg Loss: 1.96023	Time: 0.95 mins	No. of steps: 9000
+Train | Epoch: 7	Avg Loss: 1.95483	Time: 0.93 mins	No. of steps: 10000
+Train | Epoch: 7	Avg Loss: 1.95004	Time: 0.93 mins	No. of steps: 11000
+Train | Epoch: 7	Avg Loss: 1.96977	Time: 0.93 mins	No. of steps: 12000
+Train | Epoch: 7	Avg Loss: 1.96121	Time: 0.93 mins	No. of steps: 13000
+Train | Epoch: 7	Avg Loss: 1.96229	Time: 0.93 mins	No. of steps: 14000
+Train | Epoch: 7	Avg Loss: 1.96179	Time: 0.93 mins	No. of steps: 15000
+Train | Epoch: 7	Avg Loss: 1.97647	Time: 0.93 mins	No. of steps: 16000
+Train | Epoch: 7	Avg Loss: 1.98331	Time: 0.93 mins	No. of steps: 17000
+Train | Epoch: 7	Avg Loss: 1.96739	Time: 0.93 mins	No. of steps: 18000
+Train | Epoch: 7	Avg Loss: 1.97057	Time: 0.93 mins	No. of steps: 19000
+Train | Epoch: 7	Avg Loss: 1.97003	Time: 0.93 mins	No. of steps: 20000
+Train | Epoch: 7	Avg Loss: 1.98900	Time: 0.93 mins	No. of steps: 21000
+Train | Epoch: 7	Avg Loss: 1.97873	Time: 0.93 mins	No. of steps: 22000
+Train | Epoch: 7	Avg Loss: 1.97993	Time: 0.93 mins	No. of steps: 23000
+Train | Epoch: 7	Avg Loss: 1.99148	Time: 0.93 mins	No. of steps: 24000
+Train | Epoch: 7	Avg Loss: 1.98101	Time: 0.93 mins	No. of steps: 25000
+
+Train | Epoch: 7	Avg Loss: 1.95585	Time: 24.02 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 8	Avg Loss: 1.87075	Time: 1.13 mins	No. of steps: 1000
+Train | Epoch: 8	Avg Loss: 1.88207	Time: 0.93 mins	No. of steps: 2000
+Train | Epoch: 8	Avg Loss: 1.88950	Time: 0.92 mins	No. of steps: 3000
+Train | Epoch: 8	Avg Loss: 1.88273	Time: 0.92 mins	No. of steps: 4000
+Train | Epoch: 8	Avg Loss: 1.89769	Time: 0.92 mins	No. of steps: 5000
+Train | Epoch: 8	Avg Loss: 1.91459	Time: 0.92 mins	No. of steps: 6000
+Train | Epoch: 8	Avg Loss: 1.92215	Time: 0.94 mins	No. of steps: 7000
+Train | Epoch: 8	Avg Loss: 1.92852	Time: 0.94 mins	No. of steps: 8000
+Train | Epoch: 8	Avg Loss: 1.92202	Time: 0.95 mins	No. of steps: 9000
+Train | Epoch: 8	Avg Loss: 1.93192	Time: 0.92 mins	No. of steps: 10000
+Train | Epoch: 8	Avg Loss: 1.92716	Time: 0.93 mins	No. of steps: 11000
+Train | Epoch: 8	Avg Loss: 1.94272	Time: 0.94 mins	No. of steps: 12000
+Train | Epoch: 8	Avg Loss: 1.92580	Time: 0.94 mins	No. of steps: 13000
+Train | Epoch: 8	Avg Loss: 1.94623	Time: 0.94 mins	No. of steps: 14000
+Train | Epoch: 8	Avg Loss: 1.94976	Time: 0.93 mins	No. of steps: 15000
+Train | Epoch: 8	Avg Loss: 1.96088	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 8	Avg Loss: 1.94410	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 8	Avg Loss: 1.95362	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 8	Avg Loss: 1.95873	Time: 0.95 mins	No. of steps: 19000
+Train | Epoch: 8	Avg Loss: 1.95084	Time: 0.93 mins	No. of steps: 20000
+Train | Epoch: 8	Avg Loss: 1.94610	Time: 0.93 mins	No. of steps: 21000
+Train | Epoch: 8	Avg Loss: 1.95225	Time: 0.93 mins	No. of steps: 22000
+Train | Epoch: 8	Avg Loss: 1.97720	Time: 0.93 mins	No. of steps: 23000
+Train | Epoch: 8	Avg Loss: 1.95646	Time: 0.93 mins	No. of steps: 24000
+Train | Epoch: 8	Avg Loss: 1.97093	Time: 0.93 mins	No. of steps: 25000
+
+Train | Epoch: 8	Avg Loss: 1.93331	Time: 24.30 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Eval  | Epoch: 8	Time: 6.85 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 397195, 'reflen': 392151, 'guess': [397195, 356691, 316187, 275683], 'correct': [260122, 121371, 49721, 20407]}
+ratio: 1.0128623922927622
+Bleu_1: 0.655
+Bleu_2: 0.472
+Bleu_3: 0.327
+Bleu_4: 0.226
+computing CIDEr score...
+CIDEr: 0.710
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 9	Avg Loss: 1.85603	Time: 1.03 mins	No. of steps: 1000
+Train | Epoch: 9	Avg Loss: 1.85184	Time: 0.86 mins	No. of steps: 2000
+Train | Epoch: 9	Avg Loss: 1.86711	Time: 0.89 mins	No. of steps: 3000
+Train | Epoch: 9	Avg Loss: 1.87975	Time: 0.91 mins	No. of steps: 4000
+Train | Epoch: 9	Avg Loss: 1.88292	Time: 0.91 mins	No. of steps: 5000
+Train | Epoch: 9	Avg Loss: 1.88881	Time: 0.91 mins	No. of steps: 6000
+Train | Epoch: 9	Avg Loss: 1.88695	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 9	Avg Loss: 1.89926	Time: 0.94 mins	No. of steps: 8000
+Train | Epoch: 9	Avg Loss: 1.90721	Time: 0.92 mins	No. of steps: 9000
+Train | Epoch: 9	Avg Loss: 1.90511	Time: 0.92 mins	No. of steps: 10000
+Train | Epoch: 9	Avg Loss: 1.90416	Time: 0.92 mins	No. of steps: 11000
+Train | Epoch: 9	Avg Loss: 1.90676	Time: 0.92 mins	No. of steps: 12000
+Train | Epoch: 9	Avg Loss: 1.91745	Time: 0.92 mins	No. of steps: 13000
+Train | Epoch: 9	Avg Loss: 1.91566	Time: 0.93 mins	No. of steps: 14000
+Train | Epoch: 9	Avg Loss: 1.91751	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 9	Avg Loss: 1.93187	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 9	Avg Loss: 1.93111	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 9	Avg Loss: 1.93279	Time: 0.93 mins	No. of steps: 18000
+Train | Epoch: 9	Avg Loss: 1.92494	Time: 0.99 mins	No. of steps: 19000
+Train | Epoch: 9	Avg Loss: 1.94912	Time: 0.95 mins	No. of steps: 20000
+Train | Epoch: 9	Avg Loss: 1.93176	Time: 0.97 mins	No. of steps: 21000
+Train | Epoch: 9	Avg Loss: 1.93890	Time: 0.99 mins	No. of steps: 22000
+Train | Epoch: 9	Avg Loss: 1.95330	Time: 0.97 mins	No. of steps: 23000
+Train | Epoch: 9	Avg Loss: 1.94557	Time: 0.97 mins	No. of steps: 24000
+Train | Epoch: 9	Avg Loss: 1.93731	Time: 0.94 mins	No. of steps: 25000
+
+Train | Epoch: 9	Avg Loss: 1.91192	Time: 24.22 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 10	Avg Loss: 1.84045	Time: 1.14 mins	No. of steps: 1000
+Train | Epoch: 10	Avg Loss: 1.84157	Time: 0.90 mins	No. of steps: 2000
+Train | Epoch: 10	Avg Loss: 1.84100	Time: 0.93 mins	No. of steps: 3000
+Train | Epoch: 10	Avg Loss: 1.86619	Time: 0.92 mins	No. of steps: 4000
+Train | Epoch: 10	Avg Loss: 1.86478	Time: 0.94 mins	No. of steps: 5000
+Train | Epoch: 10	Avg Loss: 1.86368	Time: 0.92 mins	No. of steps: 6000
+Train | Epoch: 10	Avg Loss: 1.86594	Time: 0.92 mins	No. of steps: 7000
+Train | Epoch: 10	Avg Loss: 1.87213	Time: 0.94 mins	No. of steps: 8000
+Train | Epoch: 10	Avg Loss: 1.88351	Time: 0.94 mins	No. of steps: 9000
+Train | Epoch: 10	Avg Loss: 1.88822	Time: 0.93 mins	No. of steps: 10000
+Train | Epoch: 10	Avg Loss: 1.89542	Time: 0.93 mins	No. of steps: 11000
+Train | Epoch: 10	Avg Loss: 1.89478	Time: 0.93 mins	No. of steps: 12000
+Train | Epoch: 10	Avg Loss: 1.88808	Time: 0.93 mins	No. of steps: 13000
+Train | Epoch: 10	Avg Loss: 1.90700	Time: 0.93 mins	No. of steps: 14000
+Train | Epoch: 10	Avg Loss: 1.90578	Time: 0.93 mins	No. of steps: 15000
+Train | Epoch: 10	Avg Loss: 1.90773	Time: 0.93 mins	No. of steps: 16000
+Train | Epoch: 10	Avg Loss: 1.91027	Time: 0.93 mins	No. of steps: 17000
+Train | Epoch: 10	Avg Loss: 1.91608	Time: 0.93 mins	No. of steps: 18000
+Train | Epoch: 10	Avg Loss: 1.90997	Time: 0.93 mins	No. of steps: 19000
+Train | Epoch: 10	Avg Loss: 1.91816	Time: 0.93 mins	No. of steps: 20000
+Train | Epoch: 10	Avg Loss: 1.91218	Time: 0.93 mins	No. of steps: 21000
+Train | Epoch: 10	Avg Loss: 1.91548	Time: 0.93 mins	No. of steps: 22000
+Train | Epoch: 10	Avg Loss: 1.91528	Time: 0.93 mins	No. of steps: 23000
+Train | Epoch: 10	Avg Loss: 1.93116	Time: 0.93 mins	No. of steps: 24000
+Train | Epoch: 10	Avg Loss: 1.92693	Time: 0.93 mins	No. of steps: 25000
+
+Train | Epoch: 10	Avg Loss: 1.89251	Time: 24.22 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Eval  | Epoch: 10	Time: 6.86 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 399621, 'reflen': 394028, 'guess': [399621, 359117, 318613, 278109], 'correct': [264665, 124720, 52187, 22059]}
+ratio: 1.014194422731377
+Bleu_1: 0.662
+Bleu_2: 0.480
+Bleu_3: 0.335
+Bleu_4: 0.234
+computing CIDEr score...
+CIDEr: 0.734
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 11	Avg Loss: 1.81611	Time: 1.03 mins	No. of steps: 1000
+Train | Epoch: 11	Avg Loss: 1.81910	Time: 0.86 mins	No. of steps: 2000
+Train | Epoch: 11	Avg Loss: 1.82840	Time: 0.89 mins	No. of steps: 3000
+Train | Epoch: 11	Avg Loss: 1.83617	Time: 0.89 mins	No. of steps: 4000
+Train | Epoch: 11	Avg Loss: 1.83940	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 11	Avg Loss: 1.84858	Time: 0.92 mins	No. of steps: 6000
+Train | Epoch: 11	Avg Loss: 1.84824	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 11	Avg Loss: 1.85495	Time: 0.91 mins	No. of steps: 8000
+Train | Epoch: 11	Avg Loss: 1.86332	Time: 0.92 mins	No. of steps: 9000
+Train | Epoch: 11	Avg Loss: 1.87156	Time: 0.93 mins	No. of steps: 10000
+Train | Epoch: 11	Avg Loss: 1.87669	Time: 0.93 mins	No. of steps: 11000
+Train | Epoch: 11	Avg Loss: 1.87324	Time: 0.93 mins	No. of steps: 12000
+Train | Epoch: 11	Avg Loss: 1.88399	Time: 0.91 mins	No. of steps: 13000
+Train | Epoch: 11	Avg Loss: 1.89093	Time: 0.93 mins	No. of steps: 14000
+Train | Epoch: 11	Avg Loss: 1.87340	Time: 0.95 mins	No. of steps: 15000
+Train | Epoch: 11	Avg Loss: 1.89322	Time: 0.93 mins	No. of steps: 16000
+Train | Epoch: 11	Avg Loss: 1.89632	Time: 0.93 mins	No. of steps: 17000
+Train | Epoch: 11	Avg Loss: 1.89038	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 11	Avg Loss: 1.90231	Time: 0.92 mins	No. of steps: 19000
+Train | Epoch: 11	Avg Loss: 1.89410	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 11	Avg Loss: 1.89839	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 11	Avg Loss: 1.91184	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 11	Avg Loss: 1.90430	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 11	Avg Loss: 1.90576	Time: 0.92 mins	No. of steps: 24000
+Train | Epoch: 11	Avg Loss: 1.90990	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 11	Avg Loss: 1.87420	Time: 23.85 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 12	Avg Loss: 1.79358	Time: 1.13 mins	No. of steps: 1000
+Train | Epoch: 12	Avg Loss: 1.79482	Time: 0.92 mins	No. of steps: 2000
+Train | Epoch: 12	Avg Loss: 1.81569	Time: 0.93 mins	No. of steps: 3000
+Train | Epoch: 12	Avg Loss: 1.83387	Time: 0.94 mins	No. of steps: 4000
+Train | Epoch: 12	Avg Loss: 1.82240	Time: 0.93 mins	No. of steps: 5000
+Train | Epoch: 12	Avg Loss: 1.82732	Time: 0.94 mins	No. of steps: 6000
+Train | Epoch: 12	Avg Loss: 1.84365	Time: 0.94 mins	No. of steps: 7000
+Train | Epoch: 12	Avg Loss: 1.84665	Time: 0.93 mins	No. of steps: 8000
+Train | Epoch: 12	Avg Loss: 1.83438	Time: 0.93 mins	No. of steps: 9000
+Train | Epoch: 12	Avg Loss: 1.85650	Time: 0.93 mins	No. of steps: 10000
+Train | Epoch: 12	Avg Loss: 1.86403	Time: 0.94 mins	No. of steps: 11000
+Train | Epoch: 12	Avg Loss: 1.86074	Time: 0.92 mins	No. of steps: 12000
+Train | Epoch: 12	Avg Loss: 1.86072	Time: 0.91 mins	No. of steps: 13000
+Train | Epoch: 12	Avg Loss: 1.86690	Time: 0.94 mins	No. of steps: 14000
+Train | Epoch: 12	Avg Loss: 1.86232	Time: 0.93 mins	No. of steps: 15000
+Train | Epoch: 12	Avg Loss: 1.86722	Time: 0.93 mins	No. of steps: 16000
+Train | Epoch: 12	Avg Loss: 1.86055	Time: 0.93 mins	No. of steps: 17000
+Train | Epoch: 12	Avg Loss: 1.87482	Time: 0.93 mins	No. of steps: 18000
+Train | Epoch: 12	Avg Loss: 1.87887	Time: 0.93 mins	No. of steps: 19000
+Train | Epoch: 12	Avg Loss: 1.88117	Time: 0.93 mins	No. of steps: 20000
+Train | Epoch: 12	Avg Loss: 1.87165	Time: 0.93 mins	No. of steps: 21000
+Train | Epoch: 12	Avg Loss: 1.89458	Time: 0.93 mins	No. of steps: 22000
+Train | Epoch: 12	Avg Loss: 1.88320	Time: 0.93 mins	No. of steps: 23000
+Train | Epoch: 12	Avg Loss: 1.90103	Time: 0.93 mins	No. of steps: 24000
+Train | Epoch: 12	Avg Loss: 1.89410	Time: 0.93 mins	No. of steps: 25000
+
+Train | Epoch: 12	Avg Loss: 1.85706	Time: 24.28 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.06s)
+creating index...
+index created!
+Eval  | Epoch: 12	Time: 6.88 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 405653, 'reflen': 398033, 'guess': [405653, 365149, 324645, 284141], 'correct': [264015, 123238, 51503, 21769]}
+ratio: 1.0191441413149136
+Bleu_1: 0.651
+Bleu_2: 0.469
+Bleu_3: 0.327
+Bleu_4: 0.227
+computing CIDEr score...
+CIDEr: 0.716
+--------------------------------------------------
+Train | Epoch: 13	Avg Loss: 1.78081	Time: 1.03 mins	No. of steps: 1000
+Train | Epoch: 13	Avg Loss: 1.80298	Time: 0.86 mins	No. of steps: 2000
+Train | Epoch: 13	Avg Loss: 1.79073	Time: 0.88 mins	No. of steps: 3000
+Train | Epoch: 13	Avg Loss: 1.81624	Time: 0.90 mins	No. of steps: 4000
+Train | Epoch: 13	Avg Loss: 1.80912	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 13	Avg Loss: 1.83013	Time: 0.91 mins	No. of steps: 6000
+Train | Epoch: 13	Avg Loss: 1.82450	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 13	Avg Loss: 1.82411	Time: 0.91 mins	No. of steps: 8000
+Train | Epoch: 13	Avg Loss: 1.82564	Time: 0.93 mins	No. of steps: 9000
+Train | Epoch: 13	Avg Loss: 1.84193	Time: 0.92 mins	No. of steps: 10000
+Train | Epoch: 13	Avg Loss: 1.82943	Time: 0.92 mins	No. of steps: 11000
+Train | Epoch: 13	Avg Loss: 1.83813	Time: 0.92 mins	No. of steps: 12000
+Train | Epoch: 13	Avg Loss: 1.83772	Time: 0.92 mins	No. of steps: 13000
+Train | Epoch: 13	Avg Loss: 1.84222	Time: 0.92 mins	No. of steps: 14000
+Train | Epoch: 13	Avg Loss: 1.84953	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 13	Avg Loss: 1.85720	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 13	Avg Loss: 1.84726	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 13	Avg Loss: 1.85721	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 13	Avg Loss: 1.86202	Time: 0.92 mins	No. of steps: 19000
+Train | Epoch: 13	Avg Loss: 1.85963	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 13	Avg Loss: 1.86601	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 13	Avg Loss: 1.88052	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 13	Avg Loss: 1.85959	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 13	Avg Loss: 1.87372	Time: 0.92 mins	No. of steps: 24000
+Train | Epoch: 13	Avg Loss: 1.87366	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 13	Avg Loss: 1.84054	Time: 23.75 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 14	Avg Loss: 1.75847	Time: 1.13 mins	No. of steps: 1000
+Train | Epoch: 14	Avg Loss: 1.76762	Time: 0.90 mins	No. of steps: 2000
+Train | Epoch: 14	Avg Loss: 1.78974	Time: 0.93 mins	No. of steps: 3000
+Train | Epoch: 14	Avg Loss: 1.79908	Time: 0.93 mins	No. of steps: 4000
+Train | Epoch: 14	Avg Loss: 1.79436	Time: 0.92 mins	No. of steps: 5000
+Train | Epoch: 14	Avg Loss: 1.80712	Time: 0.92 mins	No. of steps: 6000
+Train | Epoch: 14	Avg Loss: 1.79881	Time: 0.92 mins	No. of steps: 7000
+Train | Epoch: 14	Avg Loss: 1.81638	Time: 0.92 mins	No. of steps: 8000
+Train | Epoch: 14	Avg Loss: 1.81609	Time: 0.93 mins	No. of steps: 9000
+Train | Epoch: 14	Avg Loss: 1.81045	Time: 0.94 mins	No. of steps: 10000
+Train | Epoch: 14	Avg Loss: 1.82290	Time: 0.93 mins	No. of steps: 11000
+Train | Epoch: 14	Avg Loss: 1.82055	Time: 0.93 mins	No. of steps: 12000
+Train | Epoch: 14	Avg Loss: 1.82734	Time: 0.93 mins	No. of steps: 13000
+Train | Epoch: 14	Avg Loss: 1.84083	Time: 0.92 mins	No. of steps: 14000
+Train | Epoch: 14	Avg Loss: 1.82451	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 14	Avg Loss: 1.84812	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 14	Avg Loss: 1.84719	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 14	Avg Loss: 1.84634	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 14	Avg Loss: 1.84312	Time: 0.92 mins	No. of steps: 19000
+Train | Epoch: 14	Avg Loss: 1.84687	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 14	Avg Loss: 1.85388	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 14	Avg Loss: 1.84645	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 14	Avg Loss: 1.85854	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 14	Avg Loss: 1.86291	Time: 0.93 mins	No. of steps: 24000
+Train | Epoch: 14	Avg Loss: 1.86527	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 14	Avg Loss: 1.82557	Time: 24.10 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.06s)
+creating index...
+index created!
+Eval  | Epoch: 14	Time: 6.87 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 399125, 'reflen': 393314, 'guess': [399125, 358621, 318117, 277613], 'correct': [265293, 125712, 52582, 21924]}
+ratio: 1.014774455015583
+Bleu_1: 0.665
+Bleu_2: 0.483
+Bleu_3: 0.338
+Bleu_4: 0.235
+computing CIDEr score...
+CIDEr: 0.744
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 15	Avg Loss: 1.74678	Time: 1.03 mins	No. of steps: 1000
+Train | Epoch: 15	Avg Loss: 1.76410	Time: 0.86 mins	No. of steps: 2000
+Train | Epoch: 15	Avg Loss: 1.77710	Time: 0.88 mins	No. of steps: 3000
+Train | Epoch: 15	Avg Loss: 1.77725	Time: 0.91 mins	No. of steps: 4000
+Train | Epoch: 15	Avg Loss: 1.78173	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 15	Avg Loss: 1.78439	Time: 0.91 mins	No. of steps: 6000
+Train | Epoch: 15	Avg Loss: 1.79945	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 15	Avg Loss: 1.80152	Time: 0.92 mins	No. of steps: 8000
+Train | Epoch: 15	Avg Loss: 1.80463	Time: 0.92 mins	No. of steps: 9000
+Train | Epoch: 15	Avg Loss: 1.78885	Time: 0.92 mins	No. of steps: 10000
+Train | Epoch: 15	Avg Loss: 1.80929	Time: 0.93 mins	No. of steps: 11000
+Train | Epoch: 15	Avg Loss: 1.81418	Time: 0.93 mins	No. of steps: 12000
+Train | Epoch: 15	Avg Loss: 1.81297	Time: 0.91 mins	No. of steps: 13000
+Train | Epoch: 15	Avg Loss: 1.81931	Time: 0.91 mins	No. of steps: 14000
+Train | Epoch: 15	Avg Loss: 1.82484	Time: 0.91 mins	No. of steps: 15000
+Train | Epoch: 15	Avg Loss: 1.82024	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 15	Avg Loss: 1.82177	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 15	Avg Loss: 1.82553	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 15	Avg Loss: 1.83937	Time: 0.92 mins	No. of steps: 19000
+Train | Epoch: 15	Avg Loss: 1.83497	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 15	Avg Loss: 1.83790	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 15	Avg Loss: 1.82892	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 15	Avg Loss: 1.82330	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 15	Avg Loss: 1.84369	Time: 0.92 mins	No. of steps: 24000
+Train | Epoch: 15	Avg Loss: 1.83789	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 15	Avg Loss: 1.81033	Time: 23.81 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 16	Avg Loss: 1.74143	Time: 1.13 mins	No. of steps: 1000
+Train | Epoch: 16	Avg Loss: 1.75887	Time: 0.90 mins	No. of steps: 2000
+Train | Epoch: 16	Avg Loss: 1.74469	Time: 0.91 mins	No. of steps: 3000
+Train | Epoch: 16	Avg Loss: 1.76181	Time: 0.92 mins	No. of steps: 4000
+Train | Epoch: 16	Avg Loss: 1.77523	Time: 0.91 mins	No. of steps: 5000
+Train | Epoch: 16	Avg Loss: 1.76973	Time: 0.91 mins	No. of steps: 6000
+Train | Epoch: 16	Avg Loss: 1.78668	Time: 0.92 mins	No. of steps: 7000
+Train | Epoch: 16	Avg Loss: 1.78467	Time: 0.92 mins	No. of steps: 8000
+Train | Epoch: 16	Avg Loss: 1.79103	Time: 0.92 mins	No. of steps: 9000
+Train | Epoch: 16	Avg Loss: 1.79780	Time: 0.92 mins	No. of steps: 10000
+Train | Epoch: 16	Avg Loss: 1.77887	Time: 0.92 mins	No. of steps: 11000
+Train | Epoch: 16	Avg Loss: 1.80033	Time: 0.92 mins	No. of steps: 12000
+Train | Epoch: 16	Avg Loss: 1.78899	Time: 0.92 mins	No. of steps: 13000
+Train | Epoch: 16	Avg Loss: 1.81081	Time: 0.92 mins	No. of steps: 14000
+Train | Epoch: 16	Avg Loss: 1.80314	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 16	Avg Loss: 1.81456	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 16	Avg Loss: 1.80260	Time: 0.91 mins	No. of steps: 17000
+Train | Epoch: 16	Avg Loss: 1.83058	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 16	Avg Loss: 1.81333	Time: 0.91 mins	No. of steps: 19000
+Train | Epoch: 16	Avg Loss: 1.81769	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 16	Avg Loss: 1.81719	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 16	Avg Loss: 1.83051	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 16	Avg Loss: 1.81586	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 16	Avg Loss: 1.84077	Time: 0.92 mins	No. of steps: 24000
+Train | Epoch: 16	Avg Loss: 1.82320	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 16	Avg Loss: 1.79708	Time: 23.99 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Eval  | Epoch: 16	Time: 6.89 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 404456, 'reflen': 397423, 'guess': [404456, 363952, 323448, 282944], 'correct': [266749, 125124, 51764, 21612]}
+ratio: 1.017696509764153
+Bleu_1: 0.660
+Bleu_2: 0.476
+Bleu_3: 0.331
+Bleu_4: 0.229
+computing CIDEr score...
+CIDEr: 0.741
+--------------------------------------------------
+Train | Epoch: 17	Avg Loss: 1.72714	Time: 1.03 mins	No. of steps: 1000
+Train | Epoch: 17	Avg Loss: 1.74329	Time: 0.85 mins	No. of steps: 2000
+Train | Epoch: 17	Avg Loss: 1.74514	Time: 0.88 mins	No. of steps: 3000
+Train | Epoch: 17	Avg Loss: 1.73948	Time: 0.90 mins	No. of steps: 4000
+Train | Epoch: 17	Avg Loss: 1.76197	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 17	Avg Loss: 1.76147	Time: 0.90 mins	No. of steps: 6000
+Train | Epoch: 17	Avg Loss: 1.76487	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 17	Avg Loss: 1.77232	Time: 0.91 mins	No. of steps: 8000
+Train | Epoch: 17	Avg Loss: 1.76902	Time: 0.91 mins	No. of steps: 9000
+Train | Epoch: 17	Avg Loss: 1.77808	Time: 0.91 mins	No. of steps: 10000
+Train | Epoch: 17	Avg Loss: 1.77870	Time: 0.91 mins	No. of steps: 11000
+Train | Epoch: 17	Avg Loss: 1.78781	Time: 0.91 mins	No. of steps: 12000
+Train | Epoch: 17	Avg Loss: 1.78733	Time: 0.92 mins	No. of steps: 13000
+Train | Epoch: 17	Avg Loss: 1.79157	Time: 0.93 mins	No. of steps: 14000
+Train | Epoch: 17	Avg Loss: 1.79494	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 17	Avg Loss: 1.78913	Time: 0.93 mins	No. of steps: 16000
+Train | Epoch: 17	Avg Loss: 1.80521	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 17	Avg Loss: 1.79089	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 17	Avg Loss: 1.80791	Time: 0.92 mins	No. of steps: 19000
+Train | Epoch: 17	Avg Loss: 1.79905	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 17	Avg Loss: 1.81378	Time: 0.91 mins	No. of steps: 21000
+Train | Epoch: 17	Avg Loss: 1.81129	Time: 0.91 mins	No. of steps: 22000
+Train | Epoch: 17	Avg Loss: 1.81324	Time: 0.93 mins	No. of steps: 23000
+Train | Epoch: 17	Avg Loss: 1.81667	Time: 0.92 mins	No. of steps: 24000
+Train | Epoch: 17	Avg Loss: 1.81354	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 17	Avg Loss: 1.78360	Time: 23.72 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 18	Avg Loss: 1.71820	Time: 1.13 mins	No. of steps: 1000
+Train | Epoch: 18	Avg Loss: 1.72016	Time: 0.89 mins	No. of steps: 2000
+Train | Epoch: 18	Avg Loss: 1.73112	Time: 0.93 mins	No. of steps: 3000
+Train | Epoch: 18	Avg Loss: 1.73036	Time: 0.92 mins	No. of steps: 4000
+Train | Epoch: 18	Avg Loss: 1.74706	Time: 0.92 mins	No. of steps: 5000
+Train | Epoch: 18	Avg Loss: 1.73670	Time: 0.92 mins	No. of steps: 6000
+Train | Epoch: 18	Avg Loss: 1.75010	Time: 0.91 mins	No. of steps: 7000
+Train | Epoch: 18	Avg Loss: 1.77133	Time: 0.91 mins	No. of steps: 8000
+Train | Epoch: 18	Avg Loss: 1.75924	Time: 0.91 mins	No. of steps: 9000
+Train | Epoch: 18	Avg Loss: 1.76472	Time: 0.91 mins	No. of steps: 10000
+Train | Epoch: 18	Avg Loss: 1.76091	Time: 0.91 mins	No. of steps: 11000
+Train | Epoch: 18	Avg Loss: 1.77242	Time: 0.91 mins	No. of steps: 12000
+Train | Epoch: 18	Avg Loss: 1.77232	Time: 0.91 mins	No. of steps: 13000
+Train | Epoch: 18	Avg Loss: 1.78958	Time: 0.92 mins	No. of steps: 14000
+Train | Epoch: 18	Avg Loss: 1.77845	Time: 0.92 mins	No. of steps: 15000
+Train | Epoch: 18	Avg Loss: 1.77479	Time: 0.92 mins	No. of steps: 16000
+Train | Epoch: 18	Avg Loss: 1.78506	Time: 0.92 mins	No. of steps: 17000
+Train | Epoch: 18	Avg Loss: 1.78825	Time: 0.92 mins	No. of steps: 18000
+Train | Epoch: 18	Avg Loss: 1.78088	Time: 0.92 mins	No. of steps: 19000
+Train | Epoch: 18	Avg Loss: 1.78783	Time: 0.92 mins	No. of steps: 20000
+Train | Epoch: 18	Avg Loss: 1.80497	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 18	Avg Loss: 1.79425	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 18	Avg Loss: 1.79965	Time: 0.92 mins	No. of steps: 23000
+Train | Epoch: 18	Avg Loss: 1.80212	Time: 0.92 mins	No. of steps: 24000
+Train | Epoch: 18	Avg Loss: 1.81002	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 18	Avg Loss: 1.77032	Time: 23.95 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.06s)
+creating index...
+index created!
+Eval  | Epoch: 18	Time: 6.85 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 399110, 'reflen': 393549, 'guess': [399110, 358606, 318102, 277598], 'correct': [264799, 125737, 53253, 22445]}
+ratio: 1.0141303878297214
+Bleu_1: 0.663
+Bleu_2: 0.482
+Bleu_3: 0.339
+Bleu_4: 0.237
+computing CIDEr score...
+CIDEr: 0.748
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 19	Avg Loss: 1.71150	Time: 1.03 mins	No. of steps: 1000
+Train | Epoch: 19	Avg Loss: 1.71426	Time: 0.85 mins	No. of steps: 2000
+Train | Epoch: 19	Avg Loss: 1.72015	Time: 0.89 mins	No. of steps: 3000
+Train | Epoch: 19	Avg Loss: 1.73819	Time: 0.89 mins	No. of steps: 4000
+Train | Epoch: 19	Avg Loss: 1.73993	Time: 0.90 mins	No. of steps: 5000
+Train | Epoch: 19	Avg Loss: 1.74242	Time: 0.90 mins	No. of steps: 6000
+Train | Epoch: 19	Avg Loss: 1.74365	Time: 0.90 mins	No. of steps: 7000
+Train | Epoch: 19	Avg Loss: 1.73499	Time: 0.90 mins	No. of steps: 8000
+Train | Epoch: 19	Avg Loss: 1.75164	Time: 0.92 mins	No. of steps: 9000
+Train | Epoch: 19	Avg Loss: 1.75249	Time: 0.92 mins	No. of steps: 10000
+Train | Epoch: 19	Avg Loss: 1.75957	Time: 0.91 mins	No. of steps: 11000
+Train | Epoch: 19	Avg Loss: 1.76087	Time: 0.92 mins	No. of steps: 12000
+Train | Epoch: 19	Avg Loss: 1.76167	Time: 0.91 mins	No. of steps: 13000
+Train | Epoch: 19	Avg Loss: 1.75712	Time: 0.92 mins	No. of steps: 14000
+Train | Epoch: 19	Avg Loss: 1.76488	Time: 0.91 mins	No. of steps: 15000
+Train | Epoch: 19	Avg Loss: 1.77113	Time: 0.91 mins	No. of steps: 16000
+Train | Epoch: 19	Avg Loss: 1.77519	Time: 0.91 mins	No. of steps: 17000
+Train | Epoch: 19	Avg Loss: 1.77447	Time: 0.91 mins	No. of steps: 18000
+Train | Epoch: 19	Avg Loss: 1.76718	Time: 0.91 mins	No. of steps: 19000
+Train | Epoch: 19	Avg Loss: 1.77980	Time: 0.91 mins	No. of steps: 20000
+Train | Epoch: 19	Avg Loss: 1.77819	Time: 0.92 mins	No. of steps: 21000
+Train | Epoch: 19	Avg Loss: 1.78224	Time: 0.92 mins	No. of steps: 22000
+Train | Epoch: 19	Avg Loss: 1.77568	Time: 0.91 mins	No. of steps: 23000
+Train | Epoch: 19	Avg Loss: 1.77727	Time: 0.91 mins	No. of steps: 24000
+Train | Epoch: 19	Avg Loss: 1.78573	Time: 0.92 mins	No. of steps: 25000
+
+Train | Epoch: 19	Avg Loss: 1.75792	Time: 23.65 mins	No. of steps: 25882
+--------------------------------------------------
+Unfreezing the image encoder!
+Train | Epoch: 20	Avg Loss: 1.99103	Time: 2.89 mins	No. of steps: 1000
+Train | Epoch: 20	Avg Loss: 1.91604	Time: 2.66 mins	No. of steps: 2000
+Train | Epoch: 20	Avg Loss: 1.89806	Time: 2.67 mins	No. of steps: 3000
+Train | Epoch: 20	Avg Loss: 1.89987	Time: 2.67 mins	No. of steps: 4000
+Train | Epoch: 20	Avg Loss: 1.89262	Time: 2.66 mins	No. of steps: 5000
+Train | Epoch: 20	Avg Loss: 1.87591	Time: 2.66 mins	No. of steps: 6000
+Train | Epoch: 20	Avg Loss: 1.87835	Time: 2.66 mins	No. of steps: 7000
+Train | Epoch: 20	Avg Loss: 1.87948	Time: 2.66 mins	No. of steps: 8000
+Train | Epoch: 20	Avg Loss: 1.88136	Time: 2.66 mins	No. of steps: 9000
+Train | Epoch: 20	Avg Loss: 1.85529	Time: 2.65 mins	No. of steps: 10000
+Train | Epoch: 20	Avg Loss: 1.86397	Time: 2.65 mins	No. of steps: 11000
+Train | Epoch: 20	Avg Loss: 1.86675	Time: 2.66 mins	No. of steps: 12000
+Train | Epoch: 20	Avg Loss: 1.86322	Time: 2.66 mins	No. of steps: 13000
+Train | Epoch: 20	Avg Loss: 1.85685	Time: 2.65 mins	No. of steps: 14000
+Train | Epoch: 20	Avg Loss: 1.85538	Time: 2.65 mins	No. of steps: 15000
+Train | Epoch: 20	Avg Loss: 1.85122	Time: 2.66 mins	No. of steps: 16000
+Train | Epoch: 20	Avg Loss: 1.85075	Time: 2.65 mins	No. of steps: 17000
+Train | Epoch: 20	Avg Loss: 1.85972	Time: 2.66 mins	No. of steps: 18000
+Train | Epoch: 20	Avg Loss: 1.84452	Time: 2.65 mins	No. of steps: 19000
+Train | Epoch: 20	Avg Loss: 1.85518	Time: 2.66 mins	No. of steps: 20000
+Train | Epoch: 20	Avg Loss: 1.84654	Time: 2.65 mins	No. of steps: 21000
+Train | Epoch: 20	Avg Loss: 1.85602	Time: 2.65 mins	No. of steps: 22000
+Train | Epoch: 20	Avg Loss: 1.85141	Time: 2.67 mins	No. of steps: 23000
+Train | Epoch: 20	Avg Loss: 1.85819	Time: 2.66 mins	No. of steps: 24000
+Train | Epoch: 20	Avg Loss: 1.85378	Time: 2.66 mins	No. of steps: 25000
+
+Train | Epoch: 20	Avg Loss: 1.87112	Time: 69.02 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Eval  | Epoch: 20	Time: 6.86 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 401756, 'reflen': 395286, 'guess': [401756, 361252, 320748, 280244], 'correct': [263472, 124569, 52871, 23122]}
+ratio: 1.0163678956502356
+Bleu_1: 0.656
+Bleu_2: 0.476
+Bleu_3: 0.334
+Bleu_4: 0.235
+computing CIDEr score...
+CIDEr: 0.720
+--------------------------------------------------
+Train | Epoch: 21	Avg Loss: 1.76068	Time: 2.69 mins	No. of steps: 1000
+Train | Epoch: 21	Avg Loss: 1.75953	Time: 2.62 mins	No. of steps: 2000
+Train | Epoch: 21	Avg Loss: 1.75517	Time: 2.64 mins	No. of steps: 3000
+Train | Epoch: 21	Avg Loss: 1.76684	Time: 2.64 mins	No. of steps: 4000
+Train | Epoch: 21	Avg Loss: 1.76285	Time: 2.65 mins	No. of steps: 5000
+Train | Epoch: 21	Avg Loss: 1.76665	Time: 2.65 mins	No. of steps: 6000
+Train | Epoch: 21	Avg Loss: 1.76408	Time: 2.65 mins	No. of steps: 7000
+Train | Epoch: 21	Avg Loss: 1.76976	Time: 2.66 mins	No. of steps: 8000
+Train | Epoch: 21	Avg Loss: 1.77207	Time: 2.65 mins	No. of steps: 9000
+Train | Epoch: 21	Avg Loss: 1.78786	Time: 2.64 mins	No. of steps: 10000
+Train | Epoch: 21	Avg Loss: 1.78713	Time: 2.65 mins	No. of steps: 11000
+Train | Epoch: 21	Avg Loss: 1.78452	Time: 2.65 mins	No. of steps: 12000
+Train | Epoch: 21	Avg Loss: 1.78793	Time: 2.65 mins	No. of steps: 13000
+Train | Epoch: 21	Avg Loss: 1.77075	Time: 2.66 mins	No. of steps: 14000
+Train | Epoch: 21	Avg Loss: 1.77948	Time: 2.65 mins	No. of steps: 15000
+Train | Epoch: 21	Avg Loss: 1.77385	Time: 2.65 mins	No. of steps: 16000
+Train | Epoch: 21	Avg Loss: 1.77926	Time: 2.65 mins	No. of steps: 17000
+Train | Epoch: 21	Avg Loss: 1.78306	Time: 2.64 mins	No. of steps: 18000
+Train | Epoch: 21	Avg Loss: 1.78271	Time: 2.65 mins	No. of steps: 19000
+Train | Epoch: 21	Avg Loss: 1.78683	Time: 2.64 mins	No. of steps: 20000
+Train | Epoch: 21	Avg Loss: 1.79556	Time: 2.64 mins	No. of steps: 21000
+Train | Epoch: 21	Avg Loss: 1.78070	Time: 2.64 mins	No. of steps: 22000
+Train | Epoch: 21	Avg Loss: 1.77850	Time: 2.64 mins	No. of steps: 23000
+Train | Epoch: 21	Avg Loss: 1.78464	Time: 2.64 mins	No. of steps: 24000
+Train | Epoch: 21	Avg Loss: 1.79778	Time: 2.64 mins	No. of steps: 25000
+
+Train | Epoch: 21	Avg Loss: 1.77721	Time: 68.52 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 22	Avg Loss: 1.70101	Time: 2.83 mins	No. of steps: 1000
+Train | Epoch: 22	Avg Loss: 1.70501	Time: 2.63 mins	No. of steps: 2000
+Train | Epoch: 22	Avg Loss: 1.70687	Time: 2.63 mins	No. of steps: 3000
+Train | Epoch: 22	Avg Loss: 1.71929	Time: 2.63 mins	No. of steps: 4000
+Train | Epoch: 22	Avg Loss: 1.71523	Time: 2.64 mins	No. of steps: 5000
+Train | Epoch: 22	Avg Loss: 1.71044	Time: 2.63 mins	No. of steps: 6000
+Train | Epoch: 22	Avg Loss: 1.71322	Time: 2.63 mins	No. of steps: 7000
+Train | Epoch: 22	Avg Loss: 1.72993	Time: 2.63 mins	No. of steps: 8000
+Train | Epoch: 22	Avg Loss: 1.72170	Time: 2.63 mins	No. of steps: 9000
+Train | Epoch: 22	Avg Loss: 1.72970	Time: 2.62 mins	No. of steps: 10000
+Train | Epoch: 22	Avg Loss: 1.72045	Time: 2.63 mins	No. of steps: 11000
+Train | Epoch: 22	Avg Loss: 1.73249	Time: 2.63 mins	No. of steps: 12000
+Train | Epoch: 22	Avg Loss: 1.73134	Time: 2.63 mins	No. of steps: 13000
+Train | Epoch: 22	Avg Loss: 1.74178	Time: 2.63 mins	No. of steps: 14000
+Train | Epoch: 22	Avg Loss: 1.72264	Time: 2.63 mins	No. of steps: 15000
+Train | Epoch: 22	Avg Loss: 1.74067	Time: 2.63 mins	No. of steps: 16000
+Train | Epoch: 22	Avg Loss: 1.74379	Time: 2.63 mins	No. of steps: 17000
+Train | Epoch: 22	Avg Loss: 1.74006	Time: 2.63 mins	No. of steps: 18000
+Train | Epoch: 22	Avg Loss: 1.74241	Time: 2.67 mins	No. of steps: 19000
+Train | Epoch: 22	Avg Loss: 1.74103	Time: 2.63 mins	No. of steps: 20000
+Train | Epoch: 22	Avg Loss: 1.73679	Time: 2.63 mins	No. of steps: 21000
+Train | Epoch: 22	Avg Loss: 1.74301	Time: 2.63 mins	No. of steps: 22000
+Train | Epoch: 22	Avg Loss: 1.75049	Time: 2.64 mins	No. of steps: 23000
+Train | Epoch: 22	Avg Loss: 1.73759	Time: 2.64 mins	No. of steps: 24000
+Train | Epoch: 22	Avg Loss: 1.75101	Time: 2.65 mins	No. of steps: 25000
+
+Train | Epoch: 22	Avg Loss: 1.72949	Time: 68.35 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.06s)
+creating index...
+index created!
+Eval  | Epoch: 22	Time: 6.88 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 398426, 'reflen': 392831, 'guess': [398426, 357922, 317418, 276914], 'correct': [273935, 134448, 58410, 25245]}
+ratio: 1.0142427659731512
+Bleu_1: 0.688
+Bleu_2: 0.508
+Bleu_3: 0.362
+Bleu_4: 0.257
+computing CIDEr score...
+CIDEr: 0.809
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 23	Avg Loss: 1.65225	Time: 2.69 mins	No. of steps: 1000
+Train | Epoch: 23	Avg Loss: 1.64040	Time: 2.60 mins	No. of steps: 2000
+Train | Epoch: 23	Avg Loss: 1.66707	Time: 2.63 mins	No. of steps: 3000
+Train | Epoch: 23	Avg Loss: 1.67491	Time: 2.63 mins	No. of steps: 4000
+Train | Epoch: 23	Avg Loss: 1.66781	Time: 2.64 mins	No. of steps: 5000
+Train | Epoch: 23	Avg Loss: 1.68369	Time: 2.64 mins	No. of steps: 6000
+Train | Epoch: 23	Avg Loss: 1.67831	Time: 2.64 mins	No. of steps: 7000
+Train | Epoch: 23	Avg Loss: 1.67004	Time: 2.64 mins	No. of steps: 8000
+Train | Epoch: 23	Avg Loss: 1.69643	Time: 2.64 mins	No. of steps: 9000
+Train | Epoch: 23	Avg Loss: 1.68851	Time: 2.63 mins	No. of steps: 10000
+Train | Epoch: 23	Avg Loss: 1.68888	Time: 2.63 mins	No. of steps: 11000
+Train | Epoch: 23	Avg Loss: 1.68772	Time: 2.63 mins	No. of steps: 12000
+Train | Epoch: 23	Avg Loss: 1.69790	Time: 2.65 mins	No. of steps: 13000
+Train | Epoch: 23	Avg Loss: 1.69104	Time: 2.64 mins	No. of steps: 14000
+Train | Epoch: 23	Avg Loss: 1.69527	Time: 2.62 mins	No. of steps: 15000
+Train | Epoch: 23	Avg Loss: 1.70277	Time: 2.63 mins	No. of steps: 16000
+Train | Epoch: 23	Avg Loss: 1.70107	Time: 2.62 mins	No. of steps: 17000
+Train | Epoch: 23	Avg Loss: 1.70106	Time: 2.63 mins	No. of steps: 18000
+Train | Epoch: 23	Avg Loss: 1.71674	Time: 2.62 mins	No. of steps: 19000
+Train | Epoch: 23	Avg Loss: 1.70823	Time: 2.63 mins	No. of steps: 20000
+Train | Epoch: 23	Avg Loss: 1.71385	Time: 2.62 mins	No. of steps: 21000
+Train | Epoch: 23	Avg Loss: 1.70968	Time: 2.62 mins	No. of steps: 22000
+Train | Epoch: 23	Avg Loss: 1.72051	Time: 2.63 mins	No. of steps: 23000
+Train | Epoch: 23	Avg Loss: 1.70975	Time: 2.65 mins	No. of steps: 24000
+Train | Epoch: 23	Avg Loss: 1.72680	Time: 2.64 mins	No. of steps: 25000
+
+Train | Epoch: 23	Avg Loss: 1.69223	Time: 68.24 mins	No. of steps: 25882
+--------------------------------------------------
+Train | Epoch: 24	Avg Loss: 1.61437	Time: 2.85 mins	No. of steps: 1000
+Train | Epoch: 24	Avg Loss: 1.61817	Time: 2.64 mins	No. of steps: 2000
+Train | Epoch: 24	Avg Loss: 1.63285	Time: 2.65 mins	No. of steps: 3000
+Train | Epoch: 24	Avg Loss: 1.62658	Time: 2.65 mins	No. of steps: 4000
+Train | Epoch: 24	Avg Loss: 1.64631	Time: 2.63 mins	No. of steps: 5000
+Train | Epoch: 24	Avg Loss: 1.64896	Time: 2.63 mins	No. of steps: 6000
+Train | Epoch: 24	Avg Loss: 1.65138	Time: 2.63 mins	No. of steps: 7000
+Train | Epoch: 24	Avg Loss: 1.64618	Time: 2.65 mins	No. of steps: 8000
+Train | Epoch: 24	Avg Loss: 1.64878	Time: 2.65 mins	No. of steps: 9000
+Train | Epoch: 24	Avg Loss: 1.66330	Time: 2.66 mins	No. of steps: 10000
+Train | Epoch: 24	Avg Loss: 1.66469	Time: 2.65 mins	No. of steps: 11000
+Train | Epoch: 24	Avg Loss: 1.67213	Time: 2.66 mins	No. of steps: 12000
+Train | Epoch: 24	Avg Loss: 1.66667	Time: 2.66 mins	No. of steps: 13000
+Train | Epoch: 24	Avg Loss: 1.66027	Time: 2.66 mins	No. of steps: 14000
+Train | Epoch: 24	Avg Loss: 1.65704	Time: 2.66 mins	No. of steps: 15000
+Train | Epoch: 24	Avg Loss: 1.66359	Time: 2.66 mins	No. of steps: 16000
+Train | Epoch: 24	Avg Loss: 1.66562	Time: 2.65 mins	No. of steps: 17000
+Train | Epoch: 24	Avg Loss: 1.67717	Time: 2.64 mins	No. of steps: 18000
+Train | Epoch: 24	Avg Loss: 1.67429	Time: 2.66 mins	No. of steps: 19000
+Train | Epoch: 24	Avg Loss: 1.67424	Time: 2.66 mins	No. of steps: 20000
+Train | Epoch: 24	Avg Loss: 1.67788	Time: 2.66 mins	No. of steps: 21000
+Train | Epoch: 24	Avg Loss: 1.67940	Time: 2.66 mins	No. of steps: 22000
+Train | Epoch: 24	Avg Loss: 1.67858	Time: 2.67 mins	No. of steps: 23000
+Train | Epoch: 24	Avg Loss: 1.68813	Time: 2.68 mins	No. of steps: 24000
+Train | Epoch: 24	Avg Loss: 1.68973	Time: 2.68 mins	No. of steps: 25000
+
+Train | Epoch: 24	Avg Loss: 1.66030	Time: 68.95 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.06s)
+creating index...
+index created!
+Eval  | Epoch: 24	Time: 6.85 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 400732, 'reflen': 394282, 'guess': [400732, 360228, 319724, 279220], 'correct': [276060, 138280, 61646, 27481]}
+ratio: 1.0163588497572777
+Bleu_1: 0.689
+Bleu_2: 0.514
+Bleu_3: 0.371
+Bleu_4: 0.266
+computing CIDEr score...
+CIDEr: 0.845
+Saving best checkpoint
+--------------------------------------------------
+Train | Epoch: 25	Avg Loss: 1.58306	Time: 2.71 mins	No. of steps: 1000
+Train | Epoch: 25	Avg Loss: 1.58811	Time: 2.65 mins	No. of steps: 2000
+Train | Epoch: 25	Avg Loss: 1.59736	Time: 2.66 mins	No. of steps: 3000
+Train | Epoch: 25	Avg Loss: 1.61149	Time: 2.70 mins	No. of steps: 4000
+Train | Epoch: 25	Avg Loss: 1.60466	Time: 2.69 mins	No. of steps: 5000
+Train | Epoch: 25	Avg Loss: 1.62636	Time: 2.70 mins	No. of steps: 6000
+Train | Epoch: 25	Avg Loss: 1.62544	Time: 2.70 mins	No. of steps: 7000
+Train | Epoch: 25	Avg Loss: 1.60936	Time: 2.70 mins	No. of steps: 8000
+Train | Epoch: 25	Avg Loss: 1.62962	Time: 2.71 mins	No. of steps: 9000
+Train | Epoch: 25	Avg Loss: 1.63413	Time: 2.72 mins	No. of steps: 10000
+Train | Epoch: 25	Avg Loss: 1.64312	Time: 2.71 mins	No. of steps: 11000
+Train | Epoch: 25	Avg Loss: 1.62511	Time: 2.73 mins	No. of steps: 12000
+Train | Epoch: 25	Avg Loss: 1.63423	Time: 2.72 mins	No. of steps: 13000
+Train | Epoch: 25	Avg Loss: 1.64693	Time: 2.72 mins	No. of steps: 14000
+Train | Epoch: 25	Avg Loss: 1.63265	Time: 2.73 mins	No. of steps: 15000
+Train | Epoch: 25	Avg Loss: 1.64586	Time: 2.75 mins	No. of steps: 16000
+Train | Epoch: 25	Avg Loss: 1.64796	Time: 2.78 mins	No. of steps: 17000
+Train | Epoch: 25	Avg Loss: 1.64436	Time: 2.75 mins	No. of steps: 18000
+Train | Epoch: 25	Avg Loss: 1.65120	Time: 2.76 mins	No. of steps: 19000
+Train | Epoch: 25	Avg Loss: 1.65438	Time: 2.79 mins	No. of steps: 20000
+Train | Epoch: 25	Avg Loss: 1.66450	Time: 2.76 mins	No. of steps: 21000
+Train | Epoch: 25	Avg Loss: 1.64915	Time: 2.77 mins	No. of steps: 22000
+Train | Epoch: 25	Avg Loss: 1.65347	Time: 2.79 mins	No. of steps: 23000
+Train | Epoch: 25	Avg Loss: 1.65201	Time: 2.78 mins	No. of steps: 24000
+Train | Epoch: 25	Avg Loss: 1.65174	Time: 2.78 mins	No. of steps: 25000
+
+Train | Epoch: 25	Avg Loss: 1.63293	Time: 70.82 mins	No. of steps: 25882
+Loading and preparing results...
+DONE (t=0.06s)
+creating index...
+index created!
+Eval  | Epoch: 25	Time: 7.04 mins
+tokenization...
+setting up scorers...
+computing Bleu score...
+{'testlen': 406054, 'reflen': 397928, 'guess': [406054, 365550, 325046, 284542], 'correct': [279320, 140013, 62434, 27525]}
+ratio: 1.020420779638525
+Bleu_1: 0.688
+Bleu_2: 0.513
+Bleu_3: 0.370
+Bleu_4: 0.265
+computing CIDEr score...
+CIDEr: 0.846
+Saving best checkpoint
+--------------------------------------------------
+Done
