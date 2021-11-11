@@ -15,6 +15,9 @@ from utils.file_ops import print_and_log
 import time
 
 
+from pycocoevalcap.eval import COCOEvalCap
+
+
 def forward_with_loss(model: nn.Module, criterion: nn.Module, ip: torch.Tensor, captions, lengths, targets,
                       is_train=True, cuda=True):
     if cuda:
@@ -103,37 +106,108 @@ def train(model: nn.Module, criterion: nn.Module, optimizer, dataloader, epoch=0
     return total_loss
 
 
-def evaluate(model: nn.Module, criterion: nn.Module, dataloader, epoch=0):
+def inference(net, inp_tensor, end_index=3, start_index=2, max_token=52):
+    assert len(inp_tensor.size()) == 4
+    assert inp_tensor.size(0) == 1
+
+    output = [start_index]
+
+    enc_out = net.get_encoder_output(inp_tensor)
+
+    hidden_cell = net.init_hidden_cell(enc_out)
+
+    max_ind = torch.LongTensor([start_index]).to(enc_out.device)
+
+    token_count = 0
+
+    while token_count < max_token:
+        net_output, hidden_cell = net.get_decoder_output(max_ind, hidden_cell)
+
+        _, max_ind = torch.max(net_output.squeeze(1), dim=1)
+
+        output.append(max_ind.cpu()[0].item())
+
+        if max_ind == end_index:
+            break
+
+        token_count += 1
+
+    return output
+
+
+def evaluate(model: nn.Module, dataloader, epoch=0, max_token=25):
     time_ = time.time()
+
+    index2token = dataloader.dataset.index2token
+    token2index = dataloader.dataset.token2index
+
+    end_token = dataloader.dataset.end_token
+    end_token_index = token2index[end_token]
+
+    start_token = dataloader.dataset.start_token
+    start_token_index = token2index[start_token]
+
+    pad_token = ''
+    pad_token_index = token2index[pad_token]
+
+    ignore_set = {start_token_index, end_token_index, pad_token_index}
 
     model = model.eval()
 
-    total_loss = 0
-    count = 0
+    results = list()
 
-    for data in dataloader:
-        images = data[0]
-        captions = data[1]
-        lengths = [x - 1 for x in data[-1]]
-        targets = pack_padded_sequence(captions[:, 1:], lengths, batch_first=True)[0]
+    with torch.no_grad():
+        for data in dataloader:
+            imgs_ip = data[0]
+            if args.cuda:
+                imgs_ip = imgs_ip.cuda()
 
-        if args.amp:
-            with torch.cuda.amp.autocast():
-                output, _loss = forward_with_loss(model, criterion, ip=images, captions=captions, lengths=lengths,
-                                                  targets=targets, is_train=False, cuda=args.cuda)
-        else:
-            output, _loss = forward_with_loss(model, criterion, ip=images, captions=captions, lengths=lengths,
-                                              targets=targets, is_train=False, cuda=args.cuda)
+            enc_out = model.get_encoder_output(imgs_ip)
 
-        total_loss += float(_loss) * images.size(0)
-        count += images.size(0)
+            for ii in range(data[0].size(0)):
+                output = [start_token_index]
 
-    total_loss /= count
+                hidden_cell = net.init_hidden_cell(enc_out[ii][None])
+
+                max_ind = torch.LongTensor([start_token_index]).to(enc_out.device)
+
+                token_count = 0
+
+                while token_count < max_token:
+                    net_output, hidden_cell = net.get_decoder_output(max_ind, hidden_cell)
+
+                    _, max_ind = torch.max(net_output.squeeze(1), dim=1)
+
+                    output.append(max_ind.cpu()[0].item())
+
+                    if max_ind == end_token_index:
+                        break
+
+                    token_count += 1
+
+                caption_hypothesis = [index2token[x] for x in output if x not in ignore_set]
+
+                hypothesis = ' '.join(caption_hypothesis)
+                img_id = data[4][ii]
+
+                result = {
+                    "image_id": int(img_id),
+                    "caption": hypothesis,
+                }
+
+                results.append(result)
+
+    coco_ds = dataloader.dataset.coco_captions
+    coco_res = coco_ds.loadRes(results)
+
+    coco_eval = COCOEvalCap(coco_ds, coco_res)
+
     time_ = (time.time() - time_) / 60
+    print('Eval  | Epoch: ' + str(epoch) + '\t' + f'Time: {time_:.2f} mins')
 
-    print('Eval  | Epoch: ' + str(epoch) + '\t' + f'Loss: {total_loss:.5f}\t' + f'Time: {time_:.2f} mins')
+    eval_scores = coco_eval.compute_bleu_cider()
 
-    return total_loss
+    return eval_scores
 
 
 def checkpoint(checkpointdir, model: nn.Module,  suffix='best', epoch=-1, _optimizer=None, _scheduler=None,
@@ -177,7 +251,7 @@ if __name__ == '__main__':
         sys.exit()
 
     with open(cfg_path) as fp:
-        cfg = yaml.load(fp)
+        cfg = yaml.safe_load(fp)
 
     log_file = args.cdr + '/log_' + str(datetime.datetime.now()).replace(':', '-').replace(' ', '_') + '.txt'
     print_and_log(log_file)
@@ -190,6 +264,8 @@ if __name__ == '__main__':
 
     data_cfg = cfg['dataset']
     datasetname = data_cfg['name']
+
+    data_cfg['val']['separate_captions'] = False
 
     data_loaders = {
         'train': get_dataloader(datasetname, data_cfg['train'], is_train=True, save=False),
@@ -223,25 +299,35 @@ if __name__ == '__main__':
         amp_scaler = torch.cuda.amp.GradScaler()
 
     resume = cfg.get('resume', None)
+    load = cfg.get('load', None)
     epoch_r = -1
-    if resume:
-        state_dict = torch.load(os.path.join(args.cdr, resume))
+    if resume or load:
+        if resume:
+            load_path = os.path.join(args.cdr, resume)
+        else:
+            load_path = os.path.join(args.cdr, load)
+
+        state_dict = torch.load(load_path)
+
         model_state = state_dict['model_state']
         net.load_state_dict(model_state)
 
-        epoch_r = state_dict.get('epoch', -1)
+        print('Loaded state dict from', load_path)
 
-        try:
-            opt_state = state_dict['optimizer']
-            opt.load_state_dict(opt_state)
-        except KeyError or RuntimeError:
-            print('Can\'t load optimizer dict')
+        if resume:
+            epoch_r = state_dict.get('epoch', -1)
 
-        try:
-            scheduler_state = state_dict['scheduler']
-            scheduler.load_state_dict(scheduler_state)
-        except KeyError or RuntimeError:
-            print('Can\'t load scheduler')
+            try:
+                opt_state = state_dict['optimizer']
+                opt.load_state_dict(opt_state)
+            except KeyError or RuntimeError:
+                print('Can\'t load optimizer dict')
+
+            try:
+                scheduler_state = state_dict['scheduler']
+                scheduler.load_state_dict(scheduler_state)
+            except KeyError or RuntimeError:
+                print('Can\'t load scheduler')
 
     tb_writer = tensorboardX.SummaryWriter(args.cdr)
 
@@ -258,11 +344,12 @@ if __name__ == '__main__':
     early_eval = cfg.get('early_eval', True)
     print('-' * 50)
     if early_eval:
-        best_loss = evaluate(net, loss, data_loaders['val'], epoch)
+        best_score = evaluate(net, data_loaders['val'], epoch)['CIDEr']
         print('-' * 50)
-        tb_writer.add_scalar('val_loss', best_loss, 0)
+        tb_writer.add_scalar('val_CIDEr', best_score, 0)
     else:
         best_loss = 1.e6
+        best_score = 0
 
     while epoch < nepochs:
         if freeze_enc_train and epoch >= 0.75 * nepochs:
@@ -271,19 +358,21 @@ if __name__ == '__main__':
             freeze_enc_train = False
 
         train_loss = train(net, loss, opt, data_loaders['train'], epoch + 1)
+        if (epoch + 1) % val_interval == 0 or (epoch + 1) == nepochs:
+            val_score = evaluate(net, data_loaders['val'], epoch + 1)['CIDEr']
+
         tb_writer.add_scalar('train_loss', train_loss, epoch + 1)
-
-        if (epoch + 1) % val_interval == 0:
-            val_loss = evaluate(net, loss, data_loaders['val'], epoch + 1)
-            tb_writer.add_scalar('val_loss', val_loss, epoch + 1)
-
-            if val_loss < best_loss:
-                best_loss = val_loss
-                print("Saving best_loss checkpoint")
-                checkpoint(args.cdr, net, 'best', epoch=epoch + 1)
+        if (epoch + 1) % val_interval == 0 or (epoch + 1) == nepochs:
+            tb_writer.add_scalar('val_CIDEr', val_score, epoch + 1)
 
         # scheduler.step(val_loss)
         scheduler.step()
+
+        if (epoch + 1) % val_interval == 0 or (epoch + 1) == nepochs:
+            if val_score >= best_score:
+                best_score = val_score
+                print("Saving best checkpoint")
+                checkpoint(args.cdr, net, 'best', epoch=epoch + 1)
 
         checkpoint(args.cdr, net, 'latest', epoch=epoch + 1, _optimizer=opt, _scheduler=scheduler, only_model=False)
         print('-' * 50)
