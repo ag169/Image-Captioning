@@ -9,7 +9,7 @@ import nltk
 
 import torchvision.transforms as tv_t
 from torchvision.transforms.functional import InterpolationMode
-from utils.img_transforms import Square
+from utils.img_transforms import Square, RandomScale, RandomCrop, ISONoise
 
 from PIL import Image
 import numpy as np
@@ -36,6 +36,8 @@ def collate_fn(batch, padding_value=0):
         if i == 1:
             lengths = [len(x) for x in c_x]
             c_x = pad_sequence(c_x, batch_first=True, padding_value=padding_value)
+        elif i == 3:
+            pass
         else:
             c_x = default_collate(c_x)
 
@@ -87,17 +89,27 @@ class COCO_Captions(Dataset):
         self.imgs, self.captions, self.separate_captions, self.image_ids \
             = ann2lists(self.coco_captions, separate_captions=cfg.get('separate_captions', True))
 
-        self.imgsize = cfg.get('imgsize', 256)
+        self.imgsize = cfg.get('imgsize', 224)
+        print('Img size:', self.imgsize)
 
         t_list = [
             Square(size=int(self.imgsize * 1.1), stretch=False, interpolation=InterpolationMode.BILINEAR),
+            # tv_t.RandomAffine(degrees=15, scale=(0.7, 1.1), shear=10,
+            #                   interpolation=InterpolationMode.BILINEAR),
+
+            # tv_t.RandomRotation(degrees=25, interpolation=InterpolationMode.BILINEAR),
+
+            # RandomScale(s_min=0.3, s_max=1.0),
+            RandomCrop(size=self.imgsize),
+
+            # tv_t.ColorJitter(brightness=0.3, contrast=0.3, saturation=(0.9, 1.2), hue=0.05),
 
             # TODO: Try with these augmentations (and come up with more if needed)
-            # tv_t.RandomRotation(degrees=10, interpolation=InterpolationMode.BILINEAR),
-            # tv_t.RandomResizedCrop(size=self.imgsize, scale=(0.9, 1.1), interpolation=InterpolationMode.BILINEAR),
-            # tv_t.AutoAugment(interpolation=InterpolationMode.BILINEAR),
+            # tv_t.RandomResizedCrop(size=self.imgsize, scale=(0.5, 1.3), interpolation=InterpolationMode.BILINEAR),
+            # tv_t.AutoAugment(interpolation=InterpolationMode.BILINEAR, policy=tv_t.AutoAugmentPolicy.IMAGENET),
 
-            tv_t.RandomCrop(size=self.imgsize),
+            # ISONoise(p=0.4),
+
             tv_t.RandomHorizontalFlip(),
             tv_t.ToTensor(),
             tv_t.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
@@ -197,9 +209,9 @@ class COCO_Captions(Dataset):
 
 
 if __name__ == '__main__':
-    coco_ds = COCO_Captions(is_train=False)
+    coco_ds = COCO_Captions(is_train=True)
 
-    num_imgs = 10
+    num_imgs = 30
 
     un_norm = tv_t.Normalize(mean=[-0.485/0.229, -0.456/0.224, -0.406/0.225], std=[1./0.229, 1./0.224, 1./0.225])
 
