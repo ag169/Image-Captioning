@@ -172,6 +172,46 @@ class ASPP(nn.Module):
         return self.conv_out(out)
 
 
+class Attention(nn.Module):
+    def __init__(self, encoder_channels, decoder_channels, attention_channels, norm_groups=32):
+        super(Attention, self).__init__()
+        self.encoder_tx = nn.Sequential(
+            nn.Conv2d(encoder_channels, attention_channels, kernel_size=(1, 1), padding=0, bias=False),
+            nn.GroupNorm(num_groups=norm_groups, num_channels=attention_channels),
+        )
+
+        self.decoder_tx = nn.Sequential(
+            nn.Linear(decoder_channels, attention_channels, bias=False),
+            nn.GroupNorm(num_groups=norm_groups, num_channels=attention_channels),
+        )
+
+        self.act = nn.ReLU()
+
+        self.attention = nn.Linear(attention_channels, 1)
+        self.softmax = nn.Softmax(dim=1)
+
+    def forward(self, encoder_out, decoder_hidden):
+        enc_txed = self.encoder_tx(encoder_out)                     # batch_size, attention_channels, H, W
+        enc_txed = torch.flatten(enc_txed, start_dim=2)             # batch_size, attention_channels, H * W
+
+        dec_txed = self.decoder_tx(decoder_hidden)                  # batch_size, attention_channels
+
+        fused_features = self.act(enc_txed + dec_txed[:, :, None])  # batch_size, attention_channels, H * W
+        fused_features = torch.permute(fused_features, [0, 2, 1])   # batch_size, H * W, attention_channels
+
+        attention_conf = self.attention(fused_features)[:, :, 0]    # batch_size, H * W
+        attention_scores = self.softmax(attention_conf)             # batch_size, H * W
+
+        enc_shape = list(encoder_out.size())
+        enc_shape[1] = 1
+        attention_scores = torch.reshape(attention_scores, shape=enc_shape)     # batch_size, 1, H, W
+
+        attended_encoder = encoder_out * attention_scores           # batch_size, encoder_channels, H, W
+        attended_encoder = torch.sum(attended_encoder, dim=[2, 3])  # batch_size, encoder_channels
+
+        return attended_encoder, attention_scores[:, 0, ...]
+
+
 if __name__ == '__main__':
     in_c = 24
     out_c = 36
