@@ -1,0 +1,25 @@
+model:
+  arch: r50_lstm_attn
+  params:
+    embedding_dim: 300
+    hidden_dim: 512
+dataset:
+  name: coco_caption
+  train:
+    imgsize: 224
+    batchsize: 16
+    n_workers: 4
+    token_count_thresh: 10
+  val:
+    imgsize: 224
+    batchsize: 4
+    n_workers: 2
+    token_count_thresh: 10
+lr: 1.0e-3
+weight_decay: 0
+loss: focal
+early_eval: False
+val_interval: 2
+nepochs: 25
+freeze_enc: True
+resume:
