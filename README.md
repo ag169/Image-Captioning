@@ -126,6 +126,16 @@ Decent job. The name of the trick got cut-off in the label due to count threshol
 | CIDEr         | 0.8460 | 0.8890 | 0.8873 |
 | Inference Speed (in fps) | 60 | 23 | 10  |
 
+#### 6) ResNet50-LSTM with Attention & Focal-Loss
+
+| Metric        | Beam-size 1 / Max  | Beam-size 3 |
+| ------------- |:--------------------:|:-------------------:|
+| Bleu_4        | 0.2677 | 0.2953 |
+| METEOR        | 0.2370 | 0.2411 |
+| ROUGE_L       | 0.5108 | 0.5163 |
+| CIDEr         | 0.8338 | 0.8716 |
+| Inference Speed (in fps) | 39 | 14 |
+
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
 2) Andrej Karpathy's lecture on Image Captioning: https://youtu.be/yCC09vCHzF8?t=1876
