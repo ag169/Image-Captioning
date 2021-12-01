@@ -6,7 +6,7 @@ from torch.nn.utils.rnn import pack_padded_sequence
 
 
 class ResNet50LSTMAttention(nn.Module):
-    def __init__(self, vocab_size, embedding_dim=300, hidden_dim=512):
+    def __init__(self, vocab_size, embedding_dim=300, hidden_dim=512, embeddings=None):
         super(ResNet50LSTMAttention, self).__init__()
         encoder_net = models.resnet50(pretrained=True, progress=False)
 
@@ -39,7 +39,21 @@ class ResNet50LSTMAttention(nn.Module):
             nn.Sigmoid(),
         )
 
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        if embeddings is not None:
+            v_size, e_dim = embeddings.size()
+
+            assert v_size == vocab_size
+
+            if e_dim > embedding_dim:
+                embeddings = embeddings[:, :embedding_dim]
+            elif e_dim < embedding_dim:
+                min_val = torch.min(embeddings)
+                max_val = torch.max(embeddings)
+                new_embeddings = min_val + (torch.rand(size=[v_size, embedding_dim]) * (max_val - min_val))
+                new_embeddings[:, :e_dim] = embeddings
+                embeddings = new_embeddings
+
+        self.embedding = nn.Embedding(vocab_size, embedding_dim, _weight=embeddings)
 
         self.lstm = nn.LSTM(embedding_dim + enc_out_channels, hidden_dim, num_layers=1, bidirectional=False,
                             batch_first=True, bias=True)
