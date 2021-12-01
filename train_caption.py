@@ -267,8 +267,10 @@ if __name__ == '__main__':
 
     data_cfg['val']['separate_captions'] = False
 
+    load_embed = cfg['model'].get('load_embed', False)
+
     data_loaders = {
-        'train': get_dataloader(datasetname, data_cfg['train'], is_train=True, save=False),
+        'train': get_dataloader(datasetname, data_cfg['train'], is_train=True, save=False, load_embed=load_embed),
         'val': get_dataloader(datasetname, data_cfg['val'], is_train=False, save=False),
     }
 
@@ -277,6 +279,8 @@ if __name__ == '__main__':
 
     model_params = cfg['model'].get('params', {})
     model_params['vocab_size'] = data_loaders['train'].dataset.num_tokens
+    if load_embed:
+        model_params['embeddings'] = torch.FloatTensor(data_loaders['train'].dataset.index2embedding)
 
     net = get_model(cfg['model']['arch'], params=model_params)
 

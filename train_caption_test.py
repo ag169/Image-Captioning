@@ -8,11 +8,12 @@ import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence
 import torch.optim as optim
 from models import get_model
-from datasets import get_caption_loader as get_dataloader
+from datasets import get_dataloader
 from utils.loss import get_loss
 import torchvision.transforms as tv_t
 import numpy as np
 import time
+from eval_caption import inference
 
 
 def forward_with_loss(model: nn.Module, criterion: nn.Module, ip: torch.Tensor, captions, lengths, targets,
@@ -64,7 +65,7 @@ if __name__ == '__main__':
         sys.exit()
 
     with open(cfg_path) as fp:
-        cfg = yaml.load(fp)
+        cfg = yaml.safe_load(fp)
 
     print('-' * 50)
     print('Config is as follows:')
@@ -75,8 +76,12 @@ if __name__ == '__main__':
     data_cfg = cfg['dataset']
     datasetname = data_cfg['name']
 
+    # Can test with/without loading pre-trained embeddings
+    # load_embed = cfg['model'].get('load_embed', False)
+    load_embed = False
+
     data_loaders = {
-        'train': get_dataloader(datasetname, data_cfg['train'], is_train=True, save=False),
+        'train': get_dataloader(datasetname, data_cfg['train'], is_train=True, save=False, load_embed=load_embed),
         'val': get_dataloader(datasetname, data_cfg['val'], is_train=False, save=False),
     }
 
@@ -85,6 +90,8 @@ if __name__ == '__main__':
 
     model_params = cfg['model'].get('params', {})
     model_params['vocab_size'] = data_loaders['train'].dataset.num_tokens
+    if load_embed:
+        model_params['embeddings'] = torch.FloatTensor(data_loaders['train'].dataset.index2embedding)
 
     net = get_model(cfg['model']['arch'], params=model_params)
 
@@ -98,14 +105,11 @@ if __name__ == '__main__':
         net = net.cuda()
         loss = loss.cuda()
 
-    # opt = optim.SGD(net.parameters(), lr=cfg['lr'], momentum=0.9, nesterov=True,
-    #                 weight_decay=cfg.get('weight_decay', 1e-5))
     opt = optim.Adam(net.parameters(), lr=cfg['lr'], weight_decay=cfg.get('weight_decay', 1e-5))
 
     scheduler = torch.optim.lr_scheduler.ExponentialLR(opt, gamma=0.95)
 
     if args.amp:
-        # net, opt = apex.amp.initialize(net, opt, opt_level="O1")
         amp_scaler = torch.cuda.amp.GradScaler()
 
     resume = cfg.get('resume', None)
@@ -154,8 +158,6 @@ if __name__ == '__main__':
                                               targets=targets, lengths=lengths)
 
         if args.amp:
-            # with apex.amp.scale_loss(_loss, optimizer) as scaled_loss:
-            #     scaled_loss.backward()
             amp_scaler.scale(_loss).backward()
             # torch.nn.utils.clip_grad_norm_(net.lstm .parameters(), 100.0)
             amp_scaler.step(opt)
@@ -167,7 +169,7 @@ if __name__ == '__main__':
 
         print('Train | Epoch: ' + str(epoch) + '\t' + f'Loss: {_loss.item():.5f}\t')
 
-        print('-'*50)
+        print('-' * 50)
 
         epoch += 1
 
@@ -179,25 +181,28 @@ if __name__ == '__main__':
     end_token = data_loaders['train'].dataset.end_token
     end_token_index = token2index[end_token]
 
+    start_token = data_loaders['train'].dataset.start_token
+    start_token_index = token2index[start_token]
+
     un_norm = tv_t.Normalize(mean=[-0.485 / 0.229, -0.456 / 0.224, -0.406 / 0.225],
                              std=[1. / 0.229, 1. / 0.224, 1. / 0.225])
 
     with torch.no_grad():
         for ii in range(data[0].size(0)):
-            x = data[0][ii][None, ...]
+            x = data[0][ii][None, ...].cuda()
 
             i_np = un_norm(x[0]).cpu().detach().numpy()
 
             image = np.transpose(i_np, axes=(1, 2, 0)) * 255
             image = image.astype(np.uint8)
 
-            caption_inds = net.inference(x.cuda(), end_index=end_token_index)
+            caption_inds = inference(net, x, end_index=end_token_index, start_index=start_token_index)
 
             caption_tokens = [index2token[x] for x in caption_inds]
             target_tokens = [index2token[int(x)] for x in data[1][ii]]
 
-            print(caption_tokens)
-            print(target_tokens)
+            print('Caption:', caption_tokens)
+            print('Target:', target_tokens)
             print()
 
             cv2.imshow('img', cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
