@@ -163,7 +163,7 @@ if __name__ == '__main__':
         sys.exit()
 
     with open(cfg_path) as fp:
-        cfg = yaml.load(fp)
+        cfg = yaml.safe_load(fp)
 
     print('-' * 50)
     print('Config is as follows:')
