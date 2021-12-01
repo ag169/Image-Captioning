@@ -10,12 +10,12 @@ datasets = {
 MAX_WORKERS = 10
 
 
-def get_dataset(datasetname, cfg, is_train=False, save=False):
+def get_dataset(datasetname, cfg, is_train=False, save=False, load_embed=False):
     try:
         if save:
-            dataset = datasets[datasetname](cfg, is_train=is_train, save=True)
+            dataset = datasets[datasetname](cfg, is_train=is_train, save=True, load_embed=load_embed)
         else:
-            dataset = datasets[datasetname](cfg, is_train=is_train)
+            dataset = datasets[datasetname](cfg, is_train=is_train, load_embed=load_embed)
     except KeyError as e:
         print('*' * 10)
         print('Argument \'dataset\' value: ' + datasetname + ' is not a valid dataset key')
@@ -27,8 +27,8 @@ def get_dataset(datasetname, cfg, is_train=False, save=False):
     return dataset
 
 
-def get_dataloader(datasetname, cfg, is_train=False, save=False):
-    dataset = get_dataset(datasetname, cfg, is_train=is_train, save=save)
+def get_dataloader(datasetname, cfg, is_train=False, save=False, load_embed=False):
+    dataset = get_dataset(datasetname, cfg, is_train=is_train, save=save, load_embed=load_embed)
 
     num_workers = cfg.get('n_workers', min(cfg['batchsize'], MAX_WORKERS))
 

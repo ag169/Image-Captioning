@@ -71,7 +71,7 @@ def ann2lists(captions_ann, separate_captions=True):
 
 
 class COCO_Captions(Dataset):
-    def __init__(self, cfg=None, is_train=False, save=False):
+    def __init__(self, cfg=None, is_train=False, save=False, load_embed=False):
         if cfg is None:
             cfg = dict()
 
@@ -154,6 +154,25 @@ class COCO_Captions(Dataset):
         )
 
         self.num_tokens = len(self.index2token.keys())
+
+        if load_embed:
+            embeddings_path = os.path.join(DATASET_ROOT, 'annotations', 'captions_tokens_vectors.pkl')
+
+            print('Loading pre-trained embeddings...')
+
+            with open(embeddings_path, 'rb') as fp:
+                embeddings = pickle.load(fp)
+
+            self.token2embedding = dict((token, embeddings[token]) for token in self.token2index.keys())
+
+            vec_shape = self.token2embedding[self.start_token].shape
+
+            self.index2embedding = np.zeros(shape=[self.num_tokens, vec_shape[0]], dtype=float)
+
+            for token, t_index in self.token2index.items():
+                self.index2embedding[t_index] = self.token2embedding[token]
+
+            print('Loaded pre-trained embeddings!')
 
         self.r1 = random.Random()
 
