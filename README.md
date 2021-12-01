@@ -137,7 +137,7 @@ Decent job. The name of the trick got cut-off in the label due to count threshol
 | Inference Speed (in fps) | 39 | 14 |
 
 #### 7) ResNet50-LSTM with Attention & Focal-Loss V2
-
+We send the 16-stride encoder output to the attention block and the global-pooled encoder output to a Fully-Connected layer to get the initial hidden state for the decoder.
 | Metric        | Beam-size 1 / Max  | Beam-size 3 |
 | ------------- |:--------------------:|:-------------------:|
 | Bleu_4        | 0.2691 | 0.2943 |
