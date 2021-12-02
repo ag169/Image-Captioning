@@ -146,6 +146,16 @@ We send the 16-stride encoder output to the attention block and the global-poole
 | CIDEr         | 0.8437 | 0.8751 |
 | Inference Speed (in fps) | 37 | 14 |
 
+#### 8) ResNet50-LSTM with Focal-Loss
+Same performance as using randomly-initialized embeddings.
+| Metric        | Beam-size 1 / Max  | Beam-size 3 | Beam-size 5 |
+| ------------- |:--------------------:|:-------------------:|:-------------------:|
+| Bleu_4        | 0.2582 | 0.2809 | 0.2788 |
+| METEOR        | 0.2328 | 0.2360 | 0.2340 |
+| ROUGE_L       | 0.5041 | 0.5056 | 0.5002 |
+| CIDEr         | 0.8011 | 0.8292 | 0.8191 |
+| Inference Speed (in fps) | 60 | 23 | 10  |
+
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
 2) Andrej Karpathy's lecture on Image Captioning: https://youtu.be/yCC09vCHzF8?t=1876
