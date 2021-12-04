@@ -156,6 +156,16 @@ Same performance as using randomly-initialized embeddings.
 | CIDEr         | 0.8011 | 0.8292 | 0.8191 |
 | Inference Speed (in fps) | 60 | 23 | 10  |
 
+#### 9) ResNeXT50-GRU with Attention-V2 & Focal-Loss
+Combining everything so far.
+| Metric        | Beam-size 1 / Max  | Beam-size 3 |
+| ------------- |:--------------------:|:-------------------:|
+| Bleu_4        | 0.2680 | 0.3002 |
+| METEOR        | 0.2403 | 0.2453 |
+| ROUGE_L       | 0.5138 | 0.5232 |
+| CIDEr         | 0.8601 | 0.9060 |
+| Inference Speed (in fps) | 40 | 14 |
+
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
 2) Andrej Karpathy's lecture on Image Captioning: https://youtu.be/yCC09vCHzF8?t=1876
