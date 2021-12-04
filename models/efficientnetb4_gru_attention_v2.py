@@ -8,16 +8,16 @@ from torch.nn.utils.rnn import pack_padded_sequence
 class EfficientNetB4GRUAttention(nn.Module):
     def __init__(self, vocab_size, embedding_dim=300, hidden_dim=512, embeddings=None):
         super(EfficientNetB4GRUAttention, self).__init__()
-        encoder_net = models.mobilenet_v2(pretrained=True, progress=False)
+        encoder_net = models.efficientnet_b4(pretrained=True, progress=False)
 
         modules = list(list(encoder_net.children())[0].children())
 
-        # Cutoff index -5 based on an output stride of 16
-        cutoff_ind = -5
+        # Cutoff index -3 based on an output stride of 16
+        cutoff_ind = -3
 
         self.encoder = nn.Sequential(*modules[:cutoff_ind])
 
-        enc_out_channels_1 = 96
+        enc_out_channels_1 = 160
         enc_out_channels_2 = list(encoder_net.classifier.children())[1].in_features
 
         self.freeze_enc = False
