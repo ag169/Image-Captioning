@@ -146,7 +146,7 @@ We send the 16-stride encoder output to the attention block and the global-poole
 | CIDEr         | 0.8437 | 0.8751 |
 | Inference Speed (in fps) | 37 | 14 |
 
-#### 8) ResNet50-LSTM with Focal-Loss
+#### 8) ResNet50-LSTM with Focal-Loss and Pre-Trained Embeddings
 Same performance as using randomly-initialized embeddings.
 | Metric        | Beam-size 1 / Max  | Beam-size 3 | Beam-size 5 |
 | ------------- |:--------------------:|:-------------------:|:-------------------:|
