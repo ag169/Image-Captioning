@@ -166,6 +166,16 @@ Combining everything so far.
 | CIDEr         | 0.8601 | 0.9060 |
 | Inference Speed (in fps) | 40 | 14 |
 
+#### 10) EfficientNet B4-GRU with Attention-V2 & Focal-Loss
+Combining everything so far.
+| Metric        | Beam-size 1 / Max  | Beam-size 3 |
+| ------------- |:--------------------:|:-------------------:|
+| Bleu_4        | 0.2816 | 0.3114 |
+| METEOR        | 0.2488 | 0.2544 |
+| ROUGE_L       | 0.5235 | 0.5330 |
+| CIDEr         | 0.9120 | 0.9583 |
+| Inference Speed (in fps) | 26 | 12 |
+
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
 2) Andrej Karpathy's lecture on Image Captioning: https://youtu.be/yCC09vCHzF8?t=1876
