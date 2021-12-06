@@ -167,7 +167,7 @@ Combining everything so far.
 | Inference Speed (in fps) | 40 | 14 |
 
 #### 10) EfficientNet B4-GRU with Attention-V2 & Focal-Loss
-Combining everything so far for high-accuracy model.
+Combining everything so far for a high-accuracy model.
 | Metric        | Beam-size 1 / Max  | Beam-size 3 |
 | ------------- |:--------------------:|:-------------------:|
 | Bleu_4        | 0.2816 | 0.3114 |
