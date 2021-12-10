@@ -12,7 +12,7 @@ from .efficientnetb4_gru import EfficientNetB4GRU
 models = {
     'r50_lstm': ResNet50LSTM,
     'eb4_lstm': EfficientNetB4LSTM,
-    'gru': EfficientNetB4GRU,
+    'eb4_gru': EfficientNetB4GRU,
     'rnxt50_lstm': ResNeXT50LSTM,
     'rnxt50_gru': ResNeXT50GRU,
     'r50_lstm_attn': ResNet50LSTMAttention,
