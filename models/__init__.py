@@ -7,10 +7,12 @@ from .resnet50_lstm_attention_v2 import ResNet50LSTMAttention as ResNet50LSTMAtt
 from .resnext_50_gru_attention_v2 import ResNeXT50GRUAttention
 from .mnv2_gru_attention_v2 import MobilenetV2GRUAttention
 from .efficientnetb4_gru_attention_v2 import EfficientNetB4GRUAttention
+from .efficientnetb4_gru import EfficientNetB4GRU
 
 models = {
     'r50_lstm': ResNet50LSTM,
     'eb4_lstm': EfficientNetB4LSTM,
+    'gru': EfficientNetB4GRU,
     'rnxt50_lstm': ResNeXT50LSTM,
     'rnxt50_gru': ResNeXT50GRU,
     'r50_lstm_attn': ResNet50LSTMAttention,
