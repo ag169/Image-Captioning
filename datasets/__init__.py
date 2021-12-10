@@ -1,10 +1,12 @@
 from torch.utils.data import DataLoader
 from .COCO_Caption import COCO_Captions
+from .COCO_Caption_Synonyms import COCO_Captions_Synonyms
 from torch.utils.data.dataloader import default_collate
 
 
 datasets = {
     'coco_caption': COCO_Captions,
+    'coco_caption_synonyms': COCO_Captions_Synonyms
 }
 
 MAX_WORKERS = 10

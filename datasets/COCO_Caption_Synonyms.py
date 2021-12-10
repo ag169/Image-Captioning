@@ -1,0 +1,285 @@
+import os
+import torch
+from torch.utils.data.dataset import Dataset
+from torch.utils.data.dataloader import default_collate
+from torch.nn.utils.rnn import pad_sequence
+
+from pycocotools.coco import COCO
+import nltk
+
+import torchvision.transforms as tv_t
+from torchvision.transforms.functional import InterpolationMode
+from utils.img_transforms import Square, RandomScale, RandomCrop, ISONoise
+
+from PIL import Image
+import numpy as np
+import cv2
+
+import random
+import pickle
+from collections import OrderedDict
+
+
+DATASET_ROOT = <Path to MSCOCO>
+
+
+def collate_fn(batch, padding_value=0):
+    collated = list()
+
+    lengths = list()
+
+    batch.sort(key=lambda x: len(x[1]), reverse=True)
+
+    for i in range(len(batch[0])):
+        c_x = [x[i] for x in batch]
+
+        if i == 1:
+            lengths = [len(x) for x in c_x]
+            c_x = pad_sequence(c_x, batch_first=True, padding_value=padding_value)
+        elif i == 3:
+            pass
+        else:
+            c_x = default_collate(c_x)
+
+        collated.append(c_x)
+
+    collated.append(lengths)
+
+    return tuple(collated)
+
+
+def ann2lists(captions_ann, separate_captions=True):
+    if separate_captions:
+        anns_list = [captions_ann.loadAnns(x)[0] for x in captions_ann.anns]
+
+        captions_list = [y['caption'] for y in anns_list]
+
+        img_names_list = [captions_ann.loadImgs(y['image_id'])[0]['file_name'] for y in anns_list]
+
+        img_ids = [y['image_id'] for y in anns_list]
+    else:
+        img_ids = list(captions_ann.imgs.keys())
+
+        img_names_list = [x['file_name'] for x in captions_ann.loadImgs(img_ids)]
+
+        captions_list = [[y['caption'] for y in captions_ann.loadAnns(captions_ann.getAnnIds(imgIds=x))]
+                         for x in img_ids]
+
+        img_ids = [x['id'] for x in captions_ann.loadImgs(img_ids)]
+
+    return img_names_list, captions_list, separate_captions, img_ids
+
+def token_list_to_caption(tokens):
+    caption = ''
+    for token in tokens:
+        caption += token + ' '
+    return caption.strip()
+
+class COCO_Captions_Synonyms(Dataset):
+    def __init__(self, cfg=None, is_train=False, save=False, load_embed=False):
+        if cfg is None:
+            cfg = dict()
+        self.is_train = is_train
+        self.batch_size = cfg.get('batchsize', 1)
+
+        self.in_channels = 3
+
+        self.split = 'train' if is_train else 'val'
+
+        self.img_dir = os.path.join(DATASET_ROOT, f'{self.split}2014')
+        captions_ann_path = os.path.join(DATASET_ROOT, 'annotations', f'captions_{self.split}2014.json')
+
+        self.coco_captions = COCO(captions_ann_path)
+
+        self.imgs, self.captions, self.separate_captions, self.image_ids \
+            = ann2lists(self.coco_captions, separate_captions=cfg.get('separate_captions', True))
+
+        self.imgsize = cfg.get('imgsize', 224)
+        self.replace_prob = .5
+        self.num_captions = 1
+        print('Img size:', self.imgsize)
+
+        t_list = [
+            Square(size=int(self.imgsize * 1.1), stretch=False, interpolation=InterpolationMode.BILINEAR),
+            # tv_t.RandomAffine(degrees=15, scale=(0.7, 1.1), shear=10,
+            #                   interpolation=InterpolationMode.BILINEAR),
+
+            # tv_t.RandomRotation(degrees=25, interpolation=InterpolationMode.BILINEAR),
+
+            # RandomScale(s_min=0.3, s_max=1.0),
+            RandomCrop(size=self.imgsize),
+
+            # tv_t.ColorJitter(brightness=0.3, contrast=0.3, saturation=(0.9, 1.2), hue=0.05),
+
+            # TODO: Try with these augmentations (and come up with more if needed)
+            # tv_t.RandomResizedCrop(size=self.imgsize, scale=(0.5, 1.3), interpolation=InterpolationMode.BILINEAR),
+            # tv_t.AutoAugment(interpolation=InterpolationMode.BILINEAR, policy=tv_t.AutoAugmentPolicy.IMAGENET),
+
+            # ISONoise(p=0.4),
+
+            tv_t.RandomHorizontalFlip(),
+            tv_t.ToTensor(),
+            tv_t.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ] if is_train else [
+            Square(size=self.imgsize, stretch=False, interpolation=InterpolationMode.BILINEAR),
+            tv_t.ToTensor(),
+            tv_t.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ]
+
+        self.img_transforms = tv_t.Compose(t_list)
+
+        self.token_count_thresh = cfg.get('token_count_thresh', 10)
+
+        token_path = os.path.join(DATASET_ROOT, 'annotations', 'captions_tokens_count.pkl')
+        with open(token_path, 'rb') as fp:
+            token_count = OrderedDict(pickle.load(fp))
+
+        token_path = os.path.join(DATASET_ROOT, 'annotations', 'synonym_dict.pkl')
+        with open(token_path, 'rb') as fp:
+            self.synonym_dict = OrderedDict(pickle.load(fp))
+
+        self.unknown_token = '</UNK>'
+        self.start_token = '</START>'
+        self.end_token = '</END>'
+
+        token_dict = OrderedDict({
+            '': -1,
+            self.unknown_token: -1,
+            self.start_token: -1,
+            self.end_token: -1,
+        })
+
+        token_dict.update(
+            OrderedDict([(k, token_count[k]) for k in sorted(token_count.keys())
+                         if token_count[k] > self.token_count_thresh])
+        )
+
+        self.token_count_dict = token_dict
+
+        synonyms = [x for x in list(self.synonym_dict.values()) if x is not None]
+
+        tokens = list(self.token_count_dict.keys()) + synonyms
+
+        self.token2index = OrderedDict(
+            [(tkn, ii) for (ii, tkn) in enumerate(tokens)]
+        )
+
+        self.index2token = OrderedDict(
+            [x for x in enumerate(tokens)]
+        )
+
+        self.num_tokens = len(tokens)
+
+        if load_embed:
+            embeddings_path = os.path.join(DATASET_ROOT, 'annotations', 'captions_tokens_vectors.pkl')
+
+            print('Loading pre-trained embeddings...')
+
+            with open(embeddings_path, 'rb') as fp:
+                embeddings = pickle.load(fp)
+
+            self.token2embedding = dict((token, embeddings[token]) for token in self.token2index.keys())
+
+            vec_shape = self.token2embedding[self.start_token].shape
+
+            self.index2embedding = np.zeros(shape=[self.num_tokens, vec_shape[0]], dtype=float)
+
+            for token, t_index in self.token2index.items():
+                self.index2embedding[t_index] = self.token2embedding[token]
+
+            print('Loaded pre-trained embeddings!')
+
+        self.r1 = random.Random()
+
+        self.collate_fn = collate_fn
+
+        self.max_len = 50
+
+    def __len__(self):
+        # Set length to 100 for debugging
+        # return 100
+        if self.is_train:
+            return len(self.imgs) * (1 + self.num_captions)
+        else:
+            return len(self.imgs)
+
+    def __getitem__(self, index):
+        if self.is_train:
+            new_index = index//(self.num_captions + 1)
+        else:
+            new_index = index
+
+        img_name = self.imgs[new_index]
+
+        if self.separate_captions:
+            caption = self.captions[new_index]
+        else:
+            caption = random.choice(self.captions[new_index])
+
+        img_path = os.path.join(self.img_dir, img_name)
+
+        image = Image.open(img_path).convert("RGB")
+
+        image_tensor = self.img_transforms(image)
+
+        tokens = nltk.tokenize.word_tokenize(caption.lower())
+
+        if len(tokens) > self.max_len:
+            tokens = tokens[:self.max_len]
+
+        index_list = list()
+
+        index_list.append(self.token2index['</START>'])
+
+        for idx, token in enumerate(tokens):
+            if token in self.token_count_dict:
+                if self.is_train and index % (self.num_captions + 1) != 0 and random.random() < self.replace_prob:
+                    synonym = self.synonym_dict[token] 
+                    if synonym is not None:
+                        index_list.append(self.token2index[synonym])
+                        tokens[idx] = synonym
+                    else:
+                        index_list.append(self.token2index[token])
+                else:
+                    index_list.append(self.token2index[token])
+            else:
+                index_list.append(self.token2index["</UNK>"])
+
+        caption = token_list_to_caption(tokens)
+        index_list.append(self.token2index['</END>'])
+
+        tokenized_word_tensor = torch.LongTensor(index_list)
+
+        ret_list = [image_tensor, tokenized_word_tensor, caption]
+
+        if not self.separate_captions:
+            ret_list.append(self.captions[index])
+            ret_list.append(self.image_ids[index])
+
+        return ret_list
+
+
+if __name__ == '__main__':
+    coco_ds = COCO_Captions_Synonyms(is_train=True)
+
+    num_imgs = 30
+
+    un_norm = tv_t.Normalize(mean=[-0.485/0.229, -0.456/0.224, -0.406/0.225], std=[1./0.229, 1./0.224, 1./0.225])
+
+    for ii in range(num_imgs):
+        #index = random.randint(0, len(coco_ds) - 1)
+        i_tensor, cap_t, caption = coco_ds.__getitem__(ii)
+
+        i_np = un_norm(i_tensor).cpu().detach().numpy()
+
+        image = np.transpose(i_np, axes=(1, 2, 0)) * 255
+        image = image.astype(np.uint8)
+
+        token_caption = [coco_ds.index2token[int(x)] for x in cap_t]
+
+        print(caption)
+        print(token_caption)
+
+        cv2.imshow('img', cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
+        cv2.waitKey()
+
