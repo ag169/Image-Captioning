@@ -138,6 +138,7 @@ Decent job. The name of the trick got cut-off in the label due to count threshol
 
 #### 7) ResNet50-LSTM with Attention-V2 & Focal-Loss
 We send the 16-stride encoder output to the attention block and the global-pooled encoder output to a Fully-Connected layer to get the initial hidden state for the decoder.
+
 | Metric        | Beam-size 1 / Max  | Beam-size 3 |
 | ------------- |:--------------------:|:-------------------:|
 | Bleu_4        | 0.2691 | 0.2943 |
@@ -148,6 +149,7 @@ We send the 16-stride encoder output to the attention block and the global-poole
 
 #### 8) ResNet50-LSTM with Focal-Loss and Pre-Trained Embeddings
 Same performance as using randomly-initialized embeddings.
+
 | Metric        | Beam-size 1 / Max  | Beam-size 3 | Beam-size 5 |
 | ------------- |:--------------------:|:-------------------:|:-------------------:|
 | Bleu_4        | 0.2582 | 0.2809 | 0.2788 |
@@ -158,6 +160,7 @@ Same performance as using randomly-initialized embeddings.
 
 #### 9) ResNeXT50-GRU with Attention-V2 & Focal-Loss
 Combining everything so far.
+
 | Metric        | Beam-size 1 / Max  | Beam-size 3 |
 | ------------- |:--------------------:|:-------------------:|
 | Bleu_4        | 0.2680 | 0.3002 |
@@ -167,13 +170,23 @@ Combining everything so far.
 | Inference Speed (in fps) | 40 | 14 |
 
 #### 10) EfficientNet B4-GRU with Attention-V2 & Focal-Loss
-Combining everything so far for a high-accuracy model.
+
 | Metric        | Beam-size 1 / Max  | Beam-size 3 |
 | ------------- |:--------------------:|:-------------------:|
 | Bleu_4        | 0.2816 | 0.3114 |
 | METEOR        | 0.2488 | 0.2544 |
 | ROUGE_L       | 0.5235 | 0.5330 |
 | CIDEr         | 0.9120 | 0.9583 |
+| Inference Speed (in fps) | 26 | 12 |
+
+#### 11) EfficientNet B4-GRU with Attention-V2, Synonym Replacement & Focal-Loss
+
+| Metric        | Beam-size 1 / Max  | Beam-size 3 |
+| ------------- |:--------------------:|:-------------------:|
+| Bleu_4        | 0.2837 | 0.3137 |
+| METEOR        | 0.2502 | 0.2549 |
+| ROUGE_L       | 0.5269 | 0.5359 |
+| CIDEr         | 0.9173 | 0.9625 |
 | Inference Speed (in fps) | 26 | 12 |
 
 ### References
