@@ -12,6 +12,12 @@ Developed & tested with Python 3.8, PyTorch 1.10.0 & CUDA 11.5 on a Windows 11 L
 5) [PyCOCOTools for Windows](https://pypi.org/project/pycocotools-windows/) (if running on a Windows machine)
 6) [MSCOCO train2014 and val2014 images + annotations](https://cocodataset.org/#download)
 
+
+### Inference code
+`python inference_caption.py --img_path test.jpg`
+
+Replace 'test.jpg' in the above command with the image file path for your test image. 
+
 ### Results
 
 #### 1) ResNet50-LSTM
@@ -188,6 +194,21 @@ Combining everything so far.
 | ROUGE_L       | 0.5269 | 0.5359 |
 | CIDEr         | 0.9173 | 0.9625 |
 | Inference Speed (in fps) | 26 | 12 |
+
+
+#### 12) EfficientNet B4-GRU with Attention-V2, ASPP & Focal-Loss
+
+[Model weights: Google Drive Link](https://drive.google.com/drive/folders/1xc5bknDJT5STLVPuJd0rMkn_CCMCtrV3?usp=sharing)
+
+Copy the .pth file to `checkpoints/c11_eb4_gru_attn2`
+
+| Metric        | Beam-size 1 / Max  | Beam-size 3 |
+| ------------- |:--------------------:|:-------------------:|
+| Bleu_4        | 0.2839 | 0.3105 |
+| METEOR        | 0.2500 | 0.2545 |
+| ROUGE_L       | 0.5246 | 0.5305 |
+| CIDEr         | 0.9180 | 0.9546 |
+| Inference Speed (in fps) | 25 | 12 |
 
 ### References
 1) Show and Tell Paper: https://arxiv.org/pdf/1609.06647.pdf
